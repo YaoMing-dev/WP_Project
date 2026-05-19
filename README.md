@@ -57,14 +57,21 @@ customer_test / Customer@2024
 | Cache | W3 Total Cache |
 | Local runtime | Docker Compose |
 
-## Cách Chạy Local
+## Cách Clone Và Chạy WordPress Hoàn Chỉnh
 
 Yêu cầu:
 
 - Docker Desktop đã cài và đang chạy.
 - PowerShell tại thư mục project.
 
-Chạy WordPress:
+Clone repo:
+
+```powershell
+git clone https://github.com/YaoMing-dev/WP_Project.git
+cd WP_Project
+```
+
+Chạy WordPress. Lần đầu Docker sẽ tự import database, cài theme/plugin và mount ảnh sản phẩm:
 
 ```powershell
 docker compose -f kickzone-deliverables/docker-compose.wordpress.yml up -d
@@ -76,21 +83,48 @@ Mở website:
 http://localhost:8080
 ```
 
+Đợi khoảng 1-3 phút ở lần chạy đầu để service `wordpress_bootstrap` tải Astra, WooCommerce, Yoast SEO, Contact Form 7, UpdraftPlus, W3 Total Cache và Elementor. Sau đó refresh website.
+
+Kiểm tra bootstrap:
+
+```powershell
+docker logs kickzone_wordpress_bootstrap
+```
+
 Dừng container:
 
 ```powershell
 docker compose -f kickzone-deliverables/docker-compose.wordpress.yml down
 ```
 
-## Khôi Phục Database
+## Database Và WordPress Content
 
-File database đã export:
+Database đã được export sẵn và được MySQL import tự động ở lần chạy đầu:
 
 ```text
 kickzone-deliverables/kickzone-local-db.sql
 ```
 
-Nếu cần import lại database:
+Ảnh sản phẩm và media đã được lưu trong repo:
+
+```text
+kickzone-deliverables/wp-content/uploads
+```
+
+Must-use plugin local API auth đã được mount vào WordPress:
+
+```text
+kickzone-deliverables/wp-content/mu-plugins
+```
+
+Nếu đã chạy trước đó và muốn dựng lại từ đầu giống fresh clone, xóa volume rồi chạy lại:
+
+```powershell
+docker compose -f kickzone-deliverables/docker-compose.wordpress.yml down -v
+docker compose -f kickzone-deliverables/docker-compose.wordpress.yml up -d
+```
+
+Nếu cần import lại database thủ công:
 
 ```powershell
 Get-Content kickzone-deliverables/kickzone-local-db.sql | docker exec -i kickzone_mysql mysql -uroot -proot_pass kickzone_wp

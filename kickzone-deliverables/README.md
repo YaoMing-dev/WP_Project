@@ -28,11 +28,16 @@ Bo file nay dung de hoan thien bai tap lon WordPress cho shop sneaker KickZone.
 9. Bat WooCommerce REST API va test bang `api-test.http`.
 10. Chup minh chung theo `demo-checklist.md`.
 
-## Chay local bang Docker neu khong co hosting
+## Clone va chay local bang Docker
 
-Can cai Docker Desktop truoc.
+Can cai Docker Desktop truoc. Tu repo moi clone:
 
-Mo Docker Desktop va doi den khi trang thai hien `Docker Desktop is running`, sau do chay lenh trong PowerShell tai thu muc `D:\Dev\Thanh`:
+```powershell
+git clone https://github.com/YaoMing-dev/WP_Project.git
+cd WP_Project
+```
+
+Mo Docker Desktop va doi den khi trang thai hien `Docker Desktop is running`, sau do chay:
 
 ```powershell
 docker compose -f kickzone-deliverables/docker-compose.wordpress.yml up -d
@@ -43,14 +48,13 @@ Sau do mo:
 - WordPress: `http://localhost:8080`
 - phpMyAdmin: `http://localhost:8081`
 
-Cau hinh WordPress lan dau:
+Lan dau chay, Docker se tu import database `kickzone-local-db.sql`, cai theme/plugin bang service `wordpress_bootstrap`, mount uploads va mu-plugin. Doi 1-3 phut roi refresh website.
 
-- Site Title: `KickZone`
-- Username: `admin_kickzone`
-- Password: `Admin@KickZone2024`
-- Email: email cua nhom
+Kiem tra bootstrap:
 
-Sau khi cai xong, vao Dashboard va lam tiep cac buoc plugin, theme, import san pham, SEO.
+```powershell
+docker logs kickzone_wordpress_bootstrap
+```
 
 Neu gap loi:
 

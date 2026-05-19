@@ -10,6 +10,7 @@ services:
       MYSQL_ROOT_PASSWORD: root_pass
     volumes:
       - kickzone_db:/var/lib/mysql
+      - ./kickzone-local-db.sql:/docker-entrypoint-initdb.d/01-kickzone.sql:ro
 
   wordpress:
     image: wordpress:latest
@@ -26,6 +27,28 @@ services:
       WORDPRESS_DB_PASSWORD: kickzone_pass
     volumes:
       - kickzone_wp:/var/www/html
+      - ./wp-content/uploads:/var/www/html/wp-content/uploads
+      - ./wp-content/mu-plugins:/var/www/html/wp-content/mu-plugins
+
+  wordpress_bootstrap:
+    image: wordpress:cli
+    container_name: kickzone_wordpress_bootstrap
+    user: "0:0"
+    depends_on:
+      - db
+      - wordpress
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_NAME: kickzone_wp
+      WORDPRESS_DB_USER: kickzone_user
+      WORDPRESS_DB_PASSWORD: kickzone_pass
+    volumes:
+      - kickzone_wp:/var/www/html
+      - ./wp-content/uploads:/var/www/html/wp-content/uploads
+      - ./wp-content/mu-plugins:/var/www/html/wp-content/mu-plugins
+      - ./:/work/kickzone-deliverables:ro
+    command: sh /work/kickzone-deliverables/bootstrap-wordpress.sh
+    restart: "no"
 
   phpmyadmin:
     image: phpmyadmin:latest
