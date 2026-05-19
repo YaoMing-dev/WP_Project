@@ -1,0 +1,45 @@
+services:
+  db:
+    image: mysql:8.0
+    container_name: kickzone_mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: kickzone_wp
+      MYSQL_USER: kickzone_user
+      MYSQL_PASSWORD: kickzone_pass
+      MYSQL_ROOT_PASSWORD: root_pass
+    volumes:
+      - kickzone_db:/var/lib/mysql
+
+  wordpress:
+    image: wordpress:latest
+    container_name: kickzone_wordpress
+    restart: unless-stopped
+    depends_on:
+      - db
+    ports:
+      - "8080:80"
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_NAME: kickzone_wp
+      WORDPRESS_DB_USER: kickzone_user
+      WORDPRESS_DB_PASSWORD: kickzone_pass
+    volumes:
+      - kickzone_wp:/var/www/html
+
+  phpmyadmin:
+    image: phpmyadmin:latest
+    container_name: kickzone_phpmyadmin
+    restart: unless-stopped
+    depends_on:
+      - db
+    ports:
+      - "8081:80"
+    environment:
+      PMA_HOST: db
+      PMA_USER: root
+      PMA_PASSWORD: root_pass
+
+volumes:
+  kickzone_db:
+  kickzone_wp:

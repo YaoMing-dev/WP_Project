@@ -1,0 +1,28 @@
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Logs and temp files
+*.log
+*.tmp
+*.bak
+
+# Dependency caches
+node_modules/
+vendor/
+
+# WordPress runtime folders if exported later
+wordpress/
+wp-content/cache/
+wp-content/uploads/cache/
+
+# Local-only archives
+*.zip
+*.tar
+*.gz
+
+# Environment secrets
+.env
+.env.*

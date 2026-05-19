@@ -1,0 +1,14 @@
+### WooCommerce products API
+GET https://yourdomain.com/wp-json/wc/v3/products?consumer_key=ck_xxx&consumer_secret=cs_xxx
+
+### WooCommerce products API - local Docker
+GET http://localhost:8080/wp-json/wc/v3/products?consumer_key=ck_kickzone_local_1234567890abcdef1234567890abcdef&consumer_secret=cs_kickzone_local_1234567890abcdef1234567890abcdef
+
+### WooCommerce product categories API
+GET https://yourdomain.com/wp-json/wc/v3/products/categories?consumer_key=ck_xxx&consumer_secret=cs_xxx
+
+### WordPress posts API
+GET https://yourdomain.com/wp-json/wp/v2/posts
+
+### WordPress pages API
+GET https://yourdomain.com/wp-json/wp/v2/pages

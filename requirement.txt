@@ -1,0 +1,110 @@
+II. NỘI DUNG ĐỀ KIỂM TRA
+Câu 1. (10 điểm)
+Theo nhóm tối đa 05 sinh viên, xây dựng và quản trị 01 website bằng WordPress theo một trong các định hướng sau:
+1.	Website tin tức / truyền thông 
+2.	Website giới thiệu doanh nghiệp / thương hiệu cá nhân 
+3.	Website bán hàng cơ bản / giới thiệu sản phẩm 
+Yêu cầu bắt buộc
+1. Cài đặt và cấu hình hệ thống WordPress
+•	Cài đặt WordPress hoàn chỉnh. 
+•	Thiết lập thông tin website: tên website, tagline, logo, favicon, permalink. 
+•	Thiết lập các mục quản trị cơ bản. 
+2. Xây dựng giao diện và bố cục
+•	Lựa chọn theme phù hợp với đề tài. 
+•	Tùy chỉnh giao diện theo nhận diện riêng của nhóm. 
+•	Có đầy đủ: menu, trang chủ, header, footer, sidebar (nếu phù hợp). 
+•	Giao diện hiển thị tốt trên máy tính và điện thoại. 
+3. Cài đặt và sử dụng plugin
+•	Cài đặt tối thiểu 03 plugin, trong đó nên có các nhóm chức năng như: 
+o	form liên hệ, 
+o	SEO, 
+o	backup / security / cache, 
+o	slider / gallery / e-commerce (nếu cần). 
+•	Mỗi plugin phải được cấu hình và sử dụng thực tế, không chỉ cài cho có. 
+4. Xây dựng và quản trị nội dung
+•	Website phải có ít nhất 05 trang nội dung tĩnh, ví dụ: 
+o	Trang chủ 
+o	Giới thiệu 
+o	Dịch vụ/Sản phẩm 
+o	Tin tức/Bài viết 
+o	Liên hệ 
+•	Có ít nhất 08 bài viết đối với website tin tức/giới thiệu. 
+•	Nếu là website bán hàng, có ít nhất 06 sản phẩm với thông tin đầy đủ. 
+•	Có phân loại nội dung hợp lý: category, tag, menu, media. 
+5. Quản lý tài khoản người dùng
+•	Tạo và quản lý tối thiểu 03 tài khoản người dùng với các vai trò khác nhau, ví dụ: 
+o	Administrator 
+o	Editor / Author 
+o	Customer / Subscriber 
+•	Thể hiện được thao tác quản trị người dùng trong WordPress. 
+6. Quản trị vận hành website
+•	Quản lý bài viết, trang, menu, hình ảnh, bình luận hoặc biểu mẫu liên hệ. 
+•	Có minh chứng thao tác cập nhật nội dung từ khu vực admin. 
+•	Có phương án backup cơ bản hoặc plugin hỗ trợ backup. 
+7. Bản quyền và trách nhiệm dữ liệu
+•	Nội dung, hình ảnh, video sử dụng phải có nguồn rõ ràng. 
+•	Không dùng toàn bộ dữ liệu demo tải sẵn mà không chỉnh sửa. 
+•	Website cần có thông tin về: 
+o	Bản quyền nội dung, 
+o	Liên hệ quản trị, 
+o	Lưu ý về thu thập dữ liệu (nếu có form liên hệ/đăng ký). 
+8. Triển khai website
+•	Có thể làm trên: 
+o	localhost, 
+o	local server, 
+o	hoặc hosting thật trên Internet. 
+•	Nhóm triển khai được website lên hosting/public Internet sẽ được tính thêm phần điểm 15% trong thang điểm của bài tập lớn. 
+III. SẢN PHẨM PHẢI NỘP
+Mỗi nhóm nộp đầy đủ:
+1.	Website WordPress hoàn chỉnh 
+o	Nếu làm online: nộp link website 
+o	Nếu làm local: nộp source + database + hướng dẫn chạy 
+2.	Tài khoản quản trị để giảng viên chấm 
+o	username/password của tài khoản admin test 
+3.	Báo cáo bài tập lớn
+Nội dung nên gồm: 
+o	Giới thiệu đề tài 
+o	Mục tiêu website 
+o	Cấu trúc website / sitemap 
+o	Theme và plugin sử dụng 
+o	Các chức năng chính 
+o	Quy trình quản trị nội dung 
+o	Vấn đề bản quyền và dữ liệu 
+o	Phân công công việc từng thành viên 
+4.	Slide hoặc file trình bày demo 
+5.	Bảng phân công công việc nhóm 
+o	Ghi rõ thành viên nào phụ trách phần nào 
+
+
+IV. TIÊU CHÍ CHẤM ĐIỂM ĐỀ XUẤT
+Tiêu chí	Nội dung đánh giá	Điểm
+1	Phân tích đề tài, cấu trúc website, bố cục nội dung hợp lý	1.0
+2	Cài đặt WordPress và cấu hình ban đầu đúng	1.0
+3	Tùy chỉnh giao diện, layout, menu, header, footer	1.5
+4	Cài đặt và sử dụng plugin hiệu quả	1.0
+5	Xây dựng và quản trị nội dung website	1.5
+6	Quản lý user và thao tác quản trị admin	1.0
+7	Bản quyền nội dung, trách nhiệm dữ liệu, bảo mật cơ bản	0.5
+8	Báo cáo, trình bày, demo, minh chứng phân công nhóm	1.0
+9	Triển khai website trên hosting / Internet	1.5
+	Tổng cộng	10.0
+Quy định điểm hosting
+•	Có hosting / public Internet: được chấm đủ tối đa 1.5 điểm 
+•	Không có hosting: bài vẫn hợp lệ, nhưng điểm tối đa là 8.5/10 
+V. GẮN VỚI CHUẨN ĐẦU RA HỌC PHẦN
+Nội dung đánh giá	Chỉ báo/CLO phù hợp
+Giải thích cấu trúc website, nguyên lý bố cục	CELO2.1, CELO2.2
+Cài đặt WordPress	CELO3.1
+Cài đặt plugin	CELO3.2
+Xây dựng layout	CELO3.3
+Xây dựng bài đăng / nội dung / sản phẩm	CELO4.1, CELO4.2
+Bản quyền công nghệ, trách nhiệm dữ liệu	CELO5.1, CELO5.2
+VI. LƯU Ý NÊN BỔ SUNG KHI TỔ CHỨC CHẤM
+Vì đây là bài làm nhóm, nên để công bằng, áp dụng thêm quy tắc:
+Điểm cá nhân = Điểm nhóm × hệ số đóng góp cá nhân
+Gợi ý hệ số:
+•	1.0: đóng góp đúng như phân công 
+•	0.8–0.9: đóng góp hạn chế 
+•	1.05–1.1: đóng góp nổi bật, trả lời bảo vệ tốt 
+Như vậy sẽ tránh tình trạng “điểm nhóm nhưng đóng góp không đều”.
+
