@@ -13,17 +13,17 @@ Thumbs.db
 node_modules/
 vendor/
 
-# WordPress runtime folders if exported later
+# WordPress runtime/cache folders
 wordpress/
 wp-content/cache/
-wp-content/uploads/cache/
+wp-content/uploads/
 
 # Local-only archives
 *.zip
 *.tar
 *.gz
 
-# Original downloaded theme archive/folder; clone-ready copy lives under kickzone-deliverables/wp-content/themes/
+# Original downloaded theme folder; tracked copy lives under wp-content/themes/
 blossom-chic.1.1.3/
 
 # Environment secrets

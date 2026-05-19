@@ -1,0 +1,67 @@
+services:
+  db:
+    image: mysql:8.0
+    container_name: blossom_mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: blossom_wp
+      MYSQL_USER: blossom_user
+      MYSQL_PASSWORD: blossom_pass
+      MYSQL_ROOT_PASSWORD: root_pass
+    volumes:
+      - blossom_db:/var/lib/mysql
+
+  wordpress:
+    image: wordpress:latest
+    container_name: blossom_wordpress
+    restart: unless-stopped
+    depends_on:
+      - db
+    ports:
+      - "8080:80"
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_NAME: blossom_wp
+      WORDPRESS_DB_USER: blossom_user
+      WORDPRESS_DB_PASSWORD: blossom_pass
+    volumes:
+      - blossom_wp:/var/www/html
+      - ./wp-content/themes/blossom-chic:/var/www/html/wp-content/themes/blossom-chic
+      - ./wp-content/mu-plugins:/var/www/html/wp-content/mu-plugins
+
+  wordpress_bootstrap:
+    image: wordpress:cli
+    container_name: blossom_wordpress_bootstrap
+    user: "0:0"
+    depends_on:
+      - db
+      - wordpress
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_NAME: blossom_wp
+      WORDPRESS_DB_USER: blossom_user
+      WORDPRESS_DB_PASSWORD: blossom_pass
+    volumes:
+      - blossom_wp:/var/www/html
+      - ./wp-content/themes/blossom-chic:/var/www/html/wp-content/themes/blossom-chic
+      - ./wp-content/mu-plugins:/var/www/html/wp-content/mu-plugins
+      - ./:/work:ro
+    command: sh /work/bootstrap-wordpress.sh
+    restart: "no"
+
+  phpmyadmin:
+    image: phpmyadmin:latest
+    container_name: blossom_phpmyadmin
+    restart: unless-stopped
+    depends_on:
+      - db
+    ports:
+      - "8081:80"
+    environment:
+      PMA_HOST: db
+      PMA_USER: root
+      PMA_PASSWORD: root_pass
+
+volumes:
+  blossom_db:
+  blossom_wp:

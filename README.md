@@ -1,28 +1,28 @@
-# Blossom Chic Việt - WordPress Template Demo
+# Blossom Chic Việt - WordPress Template
 
-Đây là bộ WordPress local dùng template chính thức **Blossom Chic 1.1.3**. Người clone repo chỉ cần chạy Docker Compose là có website WordPress với theme Blossom Chic, ảnh demo của theme và nội dung UI tiếng Việt.
+Repo này chỉ dùng template WordPress **Blossom Chic 1.1.3**. Không dùng source frontend/backend cũ, không import database cũ.
 
-## Clone Và Chạy
+Người clone về chỉ cần chạy Docker Compose, hệ thống sẽ tự cài WordPress trắng, cài parent theme Blossom Feminine, kích hoạt Blossom Chic và tạo nội dung demo tiếng Việt.
 
-Yêu cầu:
-
-- Docker Desktop đã cài và đang chạy.
-- PowerShell hoặc terminal tại thư mục muốn lưu project.
+## Chạy local
 
 ```powershell
 git clone https://github.com/YaoMing-dev/WP_Project.git
 cd WP_Project
-docker compose -f kickzone-deliverables/docker-compose.wordpress.yml up -d
+docker compose up -d
 ```
 
-Lần đầu chạy, đợi khoảng 1-3 phút để service `wordpress_bootstrap`:
+Đợi bootstrap hoàn tất:
 
-- Import database WordPress.
-- Cài parent theme `Blossom Feminine`.
-- Kích hoạt child theme `Blossom Chic`.
-- Cài plugin cần thiết.
-- Áp nội dung demo tiếng Việt.
-- Mount ảnh demo và must-use plugin Việt hóa UI.
+```powershell
+docker logs -f blossom_wordpress_bootstrap
+```
+
+Hoàn tất khi thấy:
+
+```text
+Blossom Chic Vietnamese WordPress bootstrap completed.
+```
 
 Mở website:
 
@@ -36,8 +36,6 @@ Admin:
 http://localhost:8080/wp-admin
 ```
 
-Tài khoản:
-
 ```text
 Username: admin_blossom
 Password: Admin@Blossom2024
@@ -49,83 +47,50 @@ phpMyAdmin:
 http://localhost:8081
 ```
 
-## Reset Chạy Lại Từ Đầu
+## Reset sạch, không cache
 
-Nếu đã chạy trước đó và muốn dựng lại sạch:
-
-```powershell
-docker compose -f kickzone-deliverables/docker-compose.wordpress.yml down -v
-docker compose -f kickzone-deliverables/docker-compose.wordpress.yml up -d
-```
-
-Xem log bootstrap:
+Nếu muốn xóa sạch container, database volume và dựng lại từ đầu:
 
 ```powershell
-docker logs kickzone_wordpress_bootstrap
+docker compose down -v --remove-orphans
+docker compose pull
+docker compose up -d --force-recreate
 ```
 
-Khi thấy dòng dưới là hoàn tất:
+## Cấu trúc chính
 
 ```text
-Blossom Chic Vietnamese WordPress bootstrap completed.
-```
-
-## Nội Dung Website Sau Khi Chạy
-
-Website sẽ hiển thị theo template Blossom Chic:
-
-- Trang chủ: giới thiệu blog phong cách sống.
-- Giới thiệu: mô tả website demo Blossom Chic Việt.
-- Blog: các bài viết demo tiếng Việt.
-- Liên hệ: form Contact Form 7 tiếng Việt.
-- Menu chính tiếng Việt.
-- Các chuỗi UI thường gặp như tìm kiếm, bình luận, đọc tiếp, danh mục, thẻ, điều hướng được Việt hóa.
-
-Nội dung cũ về shop/sneaker được dọn khỏi UI trong quá trình bootstrap. Giao diện chính dùng Blossom Chic dạng blog/lifestyle.
-
-## Công Nghệ
-
-| Hạng mục | Công nghệ |
-|---|---|
-| CMS | WordPress |
-| Runtime | Docker Compose |
-| Database | MySQL 8 |
-| Theme chính | Blossom Chic 1.1.3 |
-| Parent theme | Blossom Feminine |
-| Form | Contact Form 7 |
-| SEO | Yoast SEO |
-| Backup | UpdraftPlus |
-| Cache | W3 Total Cache |
-| Việt hóa UI | Must-use plugin `blossom-vietnamese-ui.php` |
-
-## Cấu Trúc Quan Trọng
-
-```text
-kickzone-deliverables/
-├── docker-compose.wordpress.yml
+.
+├── docker-compose.yml
 ├── bootstrap-wordpress.sh
-├── kickzone-local-db.sql
 ├── wp-apply-blossom-chic.php
 └── wp-content/
     ├── themes/
     │   └── blossom-chic/
-    ├── mu-plugins/
-    │   └── blossom-vietnamese-ui.php
-    └── uploads/
+    └── mu-plugins/
+        └── blossom-vietnamese-ui.php
 ```
 
-## SEO Và Ngôn Ngữ
+## Nội dung sau khi chạy
 
-- WordPress language: Vietnamese.
-- `html lang="vi"`.
-- Yoast SEO active.
-- Sitemap: `http://localhost:8080/sitemap_index.xml`.
-- Slug trang dùng tiếng Việt không dấu.
-- Nội dung hiển thị trên UI dùng tiếng Việt có dấu.
+- Theme: Blossom Chic 1.1.3.
+- Parent theme: Blossom Feminine.
+- Giao diện blog/lifestyle theo template Blossom Chic.
+- Ảnh dùng từ thư mục ảnh có sẵn của theme.
+- Menu tiếng Việt.
+- Trang: Trang chủ, Giới thiệu, Blog, Liên hệ.
+- Bài viết demo tiếng Việt.
+- Form liên hệ tiếng Việt.
+- UI thường gặp được Việt hóa: Đọc tiếp, Tìm kiếm, Bình luận, Danh mục, Thẻ, Điều hướng.
 
-## Ghi Chú
+## Plugin tự cài
 
-- Theme Blossom Chic nằm trong repo tại `kickzone-deliverables/wp-content/themes/blossom-chic`.
-- Parent theme Blossom Feminine được tải tự động khi chạy Docker.
-- Ảnh demo sử dụng ảnh có sẵn trong theme Blossom Chic.
-- Đây là bản local phục vụ demo/nộp bài WordPress, không dùng cho production trực tiếp.
+- Yoast SEO
+- Contact Form 7
+- UpdraftPlus
+- W3 Total Cache
+- Elementor
+
+## Ghi chú
+
+Repo này không chứa database dump cũ. Mỗi lần reset volume, WordPress sẽ được cài mới và script bootstrap sẽ tạo lại nội dung demo Blossom Chic tiếng Việt.
