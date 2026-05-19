@@ -15,7 +15,7 @@ if [ ! -f wp-load.php ]; then
   exit 1
 fi
 
-echo "Waiting for imported KickZone database..."
+echo "Waiting for imported WordPress database..."
 i=0
 while ! wp core is-installed --allow-root >/dev/null 2>&1; do
   i=$((i + 1))
@@ -29,12 +29,12 @@ done
 echo "Installing theme and plugins..."
 wp theme install blossom-feminine --force --allow-root
 wp theme activate blossom-chic --allow-root
-wp plugin install woocommerce wordpress-seo contact-form-7 updraftplus w3-total-cache elementor --activate --force --allow-root
+wp plugin deactivate woocommerce --allow-root || true
+wp plugin install wordpress-seo contact-form-7 updraftplus w3-total-cache elementor --activate --force --allow-root
 
-echo "Applying Vietnamese language and KickZone options..."
+echo "Applying Vietnamese language and Blossom Chic options..."
 wp language core install vi --activate --allow-root || true
 wp option update WPLANG vi --allow-root
-wp option update woocommerce_coming_soon no --allow-root
 wp option update permalink_structure '/%postname%/' --allow-root
 wp rewrite flush --allow-root
 
@@ -44,4 +44,4 @@ wp eval-file /work/kickzone-deliverables/wp-apply-blossom-chic.php --allow-root
 echo "Fixing WordPress content permissions..."
 chown -R www-data:www-data /var/www/html/wp-content || true
 
-echo "KickZone WordPress clone bootstrap completed."
+echo "Blossom Chic Vietnamese WordPress bootstrap completed."

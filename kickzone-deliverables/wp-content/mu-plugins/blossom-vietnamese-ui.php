@@ -1,7 +1,7 @@
 <?php
 /**
- * Plugin Name: KickZone Vietnamese UI
- * Description: Vietnamese UI text overrides for Blossom Chic, Blossom Feminine and WooCommerce demo.
+ * Plugin Name: Blossom Chic Vietnamese UI
+ * Description: Vietnamese UI text overrides for Blossom Chic and Blossom Feminine.
  */
 
 add_filter('gettext', function ($translated, $text, $domain) {

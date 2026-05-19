@@ -1,120 +1,77 @@
-# KickZone Deliverables
+# Blossom Chic Việt - Deliverables
 
-Bo file nay dung de hoan thien bai tap lon WordPress cho shop sneaker KickZone.
+Thư mục này chứa bộ Docker/WordPress để người clone repo chạy được template Blossom Chic Việt hóa.
 
-## File chinh
+## Chạy local
 
-| File | Muc dich |
-|---|---|
-| `../kickzone-frontend.html` | Frontend demo tinh, mo truc tiep bang trinh duyet |
-| `../kickzone-wordpress-backend-seo.md` | Huong dan WordPress, backend WooCommerce REST API va SEO |
-| `woocommerce-products.csv` | Du lieu san pham de import vao WooCommerce |
-| `pages-content.md` | Noi dung 5 trang tinh |
-| `blog-posts.md` | Noi dung 8 bai blog |
-| `report.md` | Bao cao bai tap lon |
-| `demo-checklist.md` | Checklist chup minh chung demo |
-| `api-test.http` | Mau test WooCommerce REST API |
-
-## Thu tu lam tren WordPress
-
-1. Cai WordPress tren hosting hoac localhost.
-2. Cai theme Astra va plugin Elementor, WooCommerce, Yoast SEO, Contact Form 7, UpdraftPlus, W3 Total Cache.
-3. Cai permalink `Post name`.
-4. Tao 5 trang: Trang chu, Gioi thieu, Shop, Blog, Lien he.
-5. Import `woocommerce-products.csv` vao WooCommerce.
-6. Tao 8 bai blog tu `blog-posts.md`.
-7. Dien SEO title/meta description theo `kickzone-wordpress-backend-seo.md`.
-8. Tao 3 user: admin, editor, customer.
-9. Bat WooCommerce REST API va test bang `api-test.http`.
-10. Chup minh chung theo `demo-checklist.md`.
-
-## Clone va chay local bang Docker
-
-Can cai Docker Desktop truoc. Tu repo moi clone:
-
-```powershell
-git clone https://github.com/YaoMing-dev/WP_Project.git
-cd WP_Project
-```
-
-Mo Docker Desktop va doi den khi trang thai hien `Docker Desktop is running`, sau do chay:
+Từ root repo:
 
 ```powershell
 docker compose -f kickzone-deliverables/docker-compose.wordpress.yml up -d
 ```
 
-Sau do mo:
+Mở:
 
-- WordPress: `http://localhost:8080`
-- phpMyAdmin: `http://localhost:8081`
+```text
+Website:    http://localhost:8080
+Admin:      http://localhost:8080/wp-admin
+phpMyAdmin: http://localhost:8081
+```
 
-Lan dau chay, Docker se tu import database `kickzone-local-db.sql`, cai theme/plugin bang service `wordpress_bootstrap`, mount uploads va mu-plugin. Doi 1-3 phut roi refresh website.
+Admin:
 
-Kiem tra bootstrap:
+```text
+admin_blossom
+Admin@Blossom2024
+```
+
+## Reset sạch
+
+```powershell
+docker compose -f kickzone-deliverables/docker-compose.wordpress.yml down -v
+docker compose -f kickzone-deliverables/docker-compose.wordpress.yml up -d
+```
+
+## Bootstrap làm gì?
+
+Service `wordpress_bootstrap` sẽ:
+
+- Đợi WordPress và database sẵn sàng.
+- Cài parent theme `blossom-feminine`.
+- Kích hoạt child theme `blossom-chic` từ repo.
+- Cài plugin: Yoast SEO, Contact Form 7, UpdraftPlus, W3 Total Cache, Elementor.
+- Kích hoạt tiếng Việt.
+- Chạy `wp-apply-blossom-chic.php` để tạo nội dung demo Blossom Chic tiếng Việt và dọn nội dung shop cũ khỏi UI.
+
+## File quan trọng
+
+| File/thư mục | Vai trò |
+|---|---|
+| `docker-compose.wordpress.yml` | Chạy WordPress, MySQL, phpMyAdmin và bootstrap |
+| `kickzone-local-db.sql` | Database WordPress nền để import tự động |
+| `bootstrap-wordpress.sh` | Script bootstrap trong container WP-CLI |
+| `wp-apply-blossom-chic.php` | Áp nội dung demo Blossom Chic tiếng Việt |
+| `wp-content/themes/blossom-chic` | Theme Blossom Chic 1.1.3 |
+| `wp-content/mu-plugins/blossom-vietnamese-ui.php` | Việt hóa chuỗi UI thường gặp |
+| `wp-content/uploads` | Media/ảnh demo đã export |
+
+## Kiểm tra
 
 ```powershell
 docker logs kickzone_wordpress_bootstrap
 ```
 
-Neu gap loi:
+Hoàn tất khi thấy:
 
 ```text
-failed to connect to the docker API
+Blossom Chic Vietnamese WordPress bootstrap completed.
 ```
 
-Nghia la Docker Desktop chua chay. Hay mo Docker Desktop truoc roi chay lai lenh.
-
-Neu gap canh bao:
+Sau đó kiểm tra:
 
 ```text
-Error loading config file: C:\Users\...\ .docker\config.json: Access is denied
+http://localhost:8080
+http://localhost:8080/blog
+http://localhost:8080/lien-he
+http://localhost:8080/sitemap_index.xml
 ```
-
-Hay mo Docker Desktop mot lan bang quyen user hien tai, hoac xoa/doi quyen file config Docker trong thu muc user. Canh bao nay khong phai loi WordPress, nhung co the lam Docker CLI khong doc duoc cau hinh.
-
-## Luu y khi nop
-
-- Neu deploy online: nop link website, tai khoan admin test, bao cao va slide.
-- Neu lam local: nop source WordPress, database `.sql`, huong dan chay va tai khoan admin.
-- Khong public Consumer Secret WooCommerce neu website con hoat dong that.
-
-## Trang thai local da cai
-
-WordPress local Docker da duoc khoi tao tai:
-
-- Website: `http://localhost:8080`
-- Admin: `http://localhost:8080/wp-admin`
-- phpMyAdmin: `http://localhost:8081`
-
-Tai khoan admin:
-
-```text
-Username: admin_kickzone
-Password: Admin@KickZone2024
-```
-
-Tai khoan mau:
-
-```text
-editor_kickzone / Editor@KickZone2024
-customer_test / Customer@2024
-```
-
-Da cai:
-
-- Theme: Blossom Chic 1.1.3
-- Parent theme: Blossom Feminine tu cai bang bootstrap
-- Plugins: WooCommerce, Yoast SEO, Contact Form 7, UpdraftPlus, W3 Total Cache, Elementor
-- Noi dung: 5 trang chinh, 8 blog posts, 8 WooCommerce products, menu, user mau
-- UI/UX: dung template WordPress chinh thuc Blossom Chic, chu hien thi tren UI duoc Viet hoa
-- Media: 8 san pham da co thumbnail va alt text
-- Ngon ngu: WordPress da kich hoat tieng Viet, giao dien nguoi dung dung chu tieng Viet co dau
-- SEO: sitemap Yoast tai `http://localhost:8080/sitemap_index.xml`
-
-Local WooCommerce REST API:
-
-```text
-http://localhost:8080/wp-json/wc/v3/products?consumer_key=ck_kickzone_local_1234567890abcdef1234567890abcdef&consumer_secret=cs_kickzone_local_1234567890abcdef1234567890abcdef
-```
-
-Ghi chu: local Docker dang chay HTTP, nen da them mu-plugin `kickzone-local-api-auth.php` chi phuc vu demo local REST API. Khi deploy hosting that co HTTPS, hay tao key that trong WooCommerce va khong dung key demo nay.
