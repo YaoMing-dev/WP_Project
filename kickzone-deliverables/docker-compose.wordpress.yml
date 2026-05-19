@@ -29,6 +29,7 @@ services:
       - kickzone_wp:/var/www/html
       - ./wp-content/uploads:/var/www/html/wp-content/uploads
       - ./wp-content/mu-plugins:/var/www/html/wp-content/mu-plugins
+      - ./wp-content/themes/blossom-chic:/var/www/html/wp-content/themes/blossom-chic
 
   wordpress_bootstrap:
     image: wordpress:cli
@@ -46,6 +47,7 @@ services:
       - kickzone_wp:/var/www/html
       - ./wp-content/uploads:/var/www/html/wp-content/uploads
       - ./wp-content/mu-plugins:/var/www/html/wp-content/mu-plugins
+      - ./wp-content/themes/blossom-chic:/var/www/html/wp-content/themes/blossom-chic
       - ./:/work/kickzone-deliverables:ro
     command: sh /work/kickzone-deliverables/bootstrap-wordpress.sh
     restart: "no"

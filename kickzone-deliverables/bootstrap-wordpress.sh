@@ -27,7 +27,8 @@ while ! wp core is-installed --allow-root >/dev/null 2>&1; do
 done
 
 echo "Installing theme and plugins..."
-wp theme install astra --activate --force --allow-root
+wp theme install blossom-feminine --force --allow-root
+wp theme activate blossom-chic --allow-root
 wp plugin install woocommerce wordpress-seo contact-form-7 updraftplus w3-total-cache elementor --activate --force --allow-root
 
 echo "Applying Vietnamese language and KickZone options..."
@@ -36,6 +37,9 @@ wp option update WPLANG vi --allow-root
 wp option update woocommerce_coming_soon no --allow-root
 wp option update permalink_structure '/%postname%/' --allow-root
 wp rewrite flush --allow-root
+
+echo "Applying Blossom Chic Vietnamese UI..."
+wp eval-file /work/kickzone-deliverables/wp-apply-blossom-chic.php --allow-root
 
 echo "Fixing WordPress content permissions..."
 chown -R www-data:www-data /var/www/html/wp-content || true

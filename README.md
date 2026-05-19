@@ -1,6 +1,6 @@
 # KickZone - WordPress Sneaker Shop
 
-KickZone là website WordPress bán giày thể thao/sneaker dành cho giới trẻ, phong cách năng động lấy cảm hứng từ các website sneaker hiện đại. Dự án dùng WordPress local bằng Docker, WooCommerce làm backend bán hàng, Yoast SEO cho SEO, Contact Form 7 cho form liên hệ và Astra/Elementor cho giao diện.
+KickZone là website WordPress bán giày thể thao/sneaker dành cho giới trẻ. Dự án dùng template WordPress chính thức **Blossom Chic 1.1.3** làm giao diện, WooCommerce làm backend bán hàng, Yoast SEO cho SEO và Contact Form 7 cho form liên hệ. Các chữ hiển thị trên UI được Việt hóa để phù hợp bài nộp.
 
 ## Demo Local
 
@@ -29,7 +29,8 @@ customer_test / Customer@2024
 ## Tính Năng Đã Hoàn Thành
 
 - WordPress local chạy bằng Docker Compose.
-- Theme Astra, Elementor Free.
+- Theme Blossom Chic 1.1.3, parent theme Blossom Feminine tự cài khi chạy Docker.
+- UI theme và các chuỗi thường gặp được Việt hóa bằng must-use plugin.
 - WooCommerce với 8 sản phẩm sneaker.
 - 5 trang chính: Trang chủ, Giới thiệu, Shop, Blog, Liên hệ.
 - 8 bài blog tiếng Việt.
@@ -49,7 +50,8 @@ customer_test / Customer@2024
 | CMS | WordPress |
 | Database | MySQL 8 |
 | E-commerce | WooCommerce |
-| Theme | Astra |
+| Theme | Blossom Chic 1.1.3 |
+| Parent theme | Blossom Feminine |
 | Page Builder | Elementor Free |
 | SEO | Yoast SEO |
 | Form | Contact Form 7 |
@@ -83,7 +85,7 @@ Mở website:
 http://localhost:8080
 ```
 
-Đợi khoảng 1-3 phút ở lần chạy đầu để service `wordpress_bootstrap` tải Astra, WooCommerce, Yoast SEO, Contact Form 7, UpdraftPlus, W3 Total Cache và Elementor. Sau đó refresh website.
+Đợi khoảng 1-3 phút ở lần chạy đầu để service `wordpress_bootstrap` tải parent theme Blossom Feminine, kích hoạt Blossom Chic, cài WooCommerce, Yoast SEO, Contact Form 7, UpdraftPlus, W3 Total Cache và Elementor. Sau đó refresh website.
 
 Kiểm tra bootstrap:
 
@@ -115,6 +117,12 @@ Must-use plugin local API auth đã được mount vào WordPress:
 
 ```text
 kickzone-deliverables/wp-content/mu-plugins
+```
+
+Theme Blossom Chic đã được lưu trong repo:
+
+```text
+kickzone-deliverables/wp-content/themes/blossom-chic
 ```
 
 Nếu đã chạy trước đó và muốn dựng lại từ đầu giống fresh clone, xóa volume rồi chạy lại:
@@ -188,7 +196,7 @@ Ghi chú: API key trên chỉ dùng cho demo local. Khi deploy hosting thật, c
 
 ### Trang Chính
 
-- Trang chủ: hero, danh mục nổi bật, sản phẩm bán chạy, sale banner, lý do chọn KickZone, newsletter.
+- Trang chủ: nội dung giới thiệu KickZone trên giao diện Blossom Chic.
 - Giới thiệu: câu chuyện thương hiệu, sứ mệnh, tầm nhìn, cam kết.
 - Shop: danh sách sản phẩm WooCommerce.
 - Blog: 8 bài viết về sneaker, review và hướng dẫn chăm sóc giày.
@@ -220,6 +228,7 @@ Mỗi sản phẩm có SKU, giá thường, giá sale, stock, category, tag, siz
 - Ảnh sản phẩm có alt text.
 - WordPress language: Vietnamese.
 - `html lang="vi"`.
+- UI theme Blossom Chic/Blossom Feminine/WooCommerce được Việt hóa bằng `kickzone-vietnamese-ui.php`.
 
 Các title SEO chính:
 

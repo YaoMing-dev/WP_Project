@@ -102,10 +102,11 @@ customer_test / Customer@2024
 
 Da cai:
 
-- Theme: Astra
+- Theme: Blossom Chic 1.1.3
+- Parent theme: Blossom Feminine tu cai bang bootstrap
 - Plugins: WooCommerce, Yoast SEO, Contact Form 7, UpdraftPlus, W3 Total Cache, Elementor
 - Noi dung: 5 trang chinh, 8 blog posts, 8 WooCommerce products, menu, user mau
-- UI/UX: da ap dung branding KickZone phong cach sneaker tre trung, hero full-width, product cards, sale banner, contact section va CSS responsive
+- UI/UX: dung template WordPress chinh thuc Blossom Chic, chu hien thi tren UI duoc Viet hoa
 - Media: 8 san pham da co thumbnail va alt text
 - Ngon ngu: WordPress da kich hoat tieng Viet, giao dien nguoi dung dung chu tieng Viet co dau
 - SEO: sitemap Yoast tai `http://localhost:8080/sitemap_index.xml`

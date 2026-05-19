@@ -23,6 +23,9 @@ wp-content/uploads/cache/
 *.tar
 *.gz
 
+# Original downloaded theme archive/folder; clone-ready copy lives under kickzone-deliverables/wp-content/themes/
+blossom-chic.1.1.3/
+
 # Environment secrets
 .env
 .env.*
