@@ -1,19 +1,19 @@
 services:
   db:
     image: mysql:8.0
-    container_name: blossom_mysql
+    container_name: kickzone_mysql
     restart: unless-stopped
     environment:
-      MYSQL_DATABASE: blossom_wp
-      MYSQL_USER: blossom_user
-      MYSQL_PASSWORD: blossom_pass
+      MYSQL_DATABASE: kickzone_wp
+      MYSQL_USER: kickzone_user
+      MYSQL_PASSWORD: kickzone_pass
       MYSQL_ROOT_PASSWORD: root_pass
     volumes:
-      - blossom_db:/var/lib/mysql
+      - kickzone_db:/var/lib/mysql
 
   wordpress:
     image: wordpress:latest
-    container_name: blossom_wordpress
+    container_name: kickzone_wordpress
     restart: unless-stopped
     depends_on:
       - db
@@ -21,29 +21,29 @@ services:
       - "8080:80"
     environment:
       WORDPRESS_DB_HOST: db:3306
-      WORDPRESS_DB_NAME: blossom_wp
-      WORDPRESS_DB_USER: blossom_user
-      WORDPRESS_DB_PASSWORD: blossom_pass
+      WORDPRESS_DB_NAME: kickzone_wp
+      WORDPRESS_DB_USER: kickzone_user
+      WORDPRESS_DB_PASSWORD: kickzone_pass
     volumes:
-      - blossom_wp:/var/www/html
-      - ./wp-content/themes/blossom-chic:/var/www/html/wp-content/themes/blossom-chic
+      - kickzone_wp:/var/www/html
+      - ./wp-content/themes/kickzone-child:/var/www/html/wp-content/themes/kickzone-child
       - ./wp-content/mu-plugins:/var/www/html/wp-content/mu-plugins
 
   wordpress_bootstrap:
     image: wordpress:cli
-    container_name: blossom_wordpress_bootstrap
+    container_name: kickzone_wordpress_bootstrap
     user: "0:0"
     depends_on:
       - db
       - wordpress
     environment:
       WORDPRESS_DB_HOST: db:3306
-      WORDPRESS_DB_NAME: blossom_wp
-      WORDPRESS_DB_USER: blossom_user
-      WORDPRESS_DB_PASSWORD: blossom_pass
+      WORDPRESS_DB_NAME: kickzone_wp
+      WORDPRESS_DB_USER: kickzone_user
+      WORDPRESS_DB_PASSWORD: kickzone_pass
     volumes:
-      - blossom_wp:/var/www/html
-      - ./wp-content/themes/blossom-chic:/var/www/html/wp-content/themes/blossom-chic
+      - kickzone_wp:/var/www/html
+      - ./wp-content/themes/kickzone-child:/var/www/html/wp-content/themes/kickzone-child
       - ./wp-content/mu-plugins:/var/www/html/wp-content/mu-plugins
       - ./:/work:ro
     command: sh /work/bootstrap-wordpress.sh
@@ -51,7 +51,7 @@ services:
 
   phpmyadmin:
     image: phpmyadmin:latest
-    container_name: blossom_phpmyadmin
+    container_name: kickzone_phpmyadmin
     restart: unless-stopped
     depends_on:
       - db
@@ -63,5 +63,5 @@ services:
       PMA_PASSWORD: root_pass
 
 volumes:
-  blossom_db:
-  blossom_wp:
+  kickzone_db:
+  kickzone_wp:

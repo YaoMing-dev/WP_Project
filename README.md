@@ -1,10 +1,14 @@
-# Blossom Chic Việt - WordPress Template
+# KickZone Sneaker Shop - WordPress
 
-Repo này chỉ dùng template WordPress **Blossom Chic 1.1.3**. Không dùng source frontend/backend cũ, không import database cũ.
+KickZone là website bán giày sneaker chạy bằng WordPress + WooCommerce. Repo này chứa source cần thiết để người khác clone về và dựng lại website local giống bản demo hiện tại bằng Docker.
 
-Người clone về chỉ cần chạy Docker Compose, hệ thống sẽ tự cài WordPress trắng, cài parent theme Blossom Feminine, kích hoạt Blossom Chic và tạo nội dung demo tiếng Việt.
+## Yêu cầu
 
-## Chạy local
+- Docker Desktop đang chạy.
+- Port `8080` và `8081` còn trống.
+- Không cần cài PHP, MySQL, WordPress hay Composer trên máy host.
+
+## Chạy local lần đầu
 
 ```powershell
 git clone https://github.com/YaoMing-dev/WP_Project.git
@@ -12,85 +16,124 @@ cd WP_Project
 docker compose up -d
 ```
 
-Đợi bootstrap hoàn tất:
+Theo dõi bootstrap:
 
 ```powershell
-docker logs -f blossom_wordpress_bootstrap
+docker logs -f kickzone_wordpress_bootstrap
 ```
 
 Hoàn tất khi thấy:
 
 ```text
-Blossom Chic Vietnamese WordPress bootstrap completed.
+KickZone WordPress bootstrap completed.
 ```
 
-Mở website:
+## Truy cập
 
-```text
-http://localhost:8080
-```
+| URL | Mục đích |
+|-----|----------|
+| `http://localhost:8080` | Website KickZone |
+| `http://localhost:8080/wp-admin` | WordPress Admin |
+| `http://localhost:8080/shop` | Trang Shop |
+| `http://localhost:8080/gioi-thieu/` | Trang Giới thiệu |
+| `http://localhost:8080/lien-he/` | Trang Liên hệ |
+| `http://localhost:8081` | phpMyAdmin |
 
-Admin:
+## Tài khoản
 
-```text
-http://localhost:8080/wp-admin
-```
+Xem đầy đủ trong `accounts.txt`.
 
-```text
-Username: admin_blossom
-Password: Admin@Blossom2024
-```
+| Username | Password | Role |
+|----------|----------|------|
+| `admin_kickzone` | `Admin@KZ2024!` | Administrator |
+| `editor_kickzone` | `Editor@KZ2024!` | Editor |
+| `customer_test` | `Customer@2024!` | Customer |
 
-phpMyAdmin:
+Database phpMyAdmin:
 
-```text
-http://localhost:8081
-```
+| Field | Value |
+|-------|-------|
+| Server | `db` hoặc `kickzone_mysql` |
+| Username | `root` |
+| Password | `root_pass` |
+| Database | `kickzone_wp` |
 
-## Reset sạch, không cache
+## Không mất dữ liệu local
 
-Nếu muốn xóa sạch container, database volume và dựng lại từ đầu:
+Lệnh `docker compose up -d` không xóa database volume đang có. Nếu đã nhập thêm sản phẩm/bài viết/order trên local, dữ liệu vẫn nằm trong Docker volume `kickzone_db`.
+
+Chỉ dùng lệnh reset bên dưới khi muốn xóa sạch database local và dựng lại demo từ đầu:
 
 ```powershell
 docker compose down -v --remove-orphans
-docker compose pull
 docker compose up -d --force-recreate
 ```
 
-## Cấu trúc chính
+Nếu cần giữ dữ liệu thật trước khi reset, export trong WordPress Admin hoặc phpMyAdmin trước.
+
+## Cấu trúc source chính
 
 ```text
 .
 ├── docker-compose.yml
 ├── bootstrap-wordpress.sh
-├── wp-apply-blossom-chic.php
+├── wp-apply-kickzone.php
+├── wp-run-with-errors.php
+├── wp-run-kickzone.sh
+├── accounts.txt
 └── wp-content/
     ├── themes/
-    │   └── blossom-chic/
+    │   └── kickzone-child/
+    │       ├── style.css
+    │       ├── functions.php
+    │       └── kickzone-logo.svg
     └── mu-plugins/
-        └── blossom-vietnamese-ui.php
+        └── kickzone-ui.php
 ```
 
-## Nội dung sau khi chạy
+## Nội dung bootstrap tạo ra
 
-- Theme: Blossom Chic 1.1.3.
-- Parent theme: Blossom Feminine.
-- Giao diện blog/lifestyle theo template Blossom Chic.
-- Ảnh dùng từ thư mục ảnh có sẵn của theme.
-- Menu tiếng Việt.
-- Trang: Trang chủ, Giới thiệu, Blog, Liên hệ.
-- Bài viết demo tiếng Việt.
-- Form liên hệ tiếng Việt.
-- UI thường gặp được Việt hóa: Đọc tiếp, Tìm kiếm, Bình luận, Danh mục, Thẻ, Điều hướng.
+- Trang: Trang chủ, Shop, Giới thiệu, Liên hệ, Blog, Chính sách bảo mật.
+- Sản phẩm WooCommerce: 8 mẫu giày sneaker/running/lifestyle.
+- Blog: 8 bài về sneaker, review, vệ sinh giày, xu hướng màu và cách chọn giày.
+- Menu chính, footer menu, logo, theme settings, SEO metadata cơ bản.
+- Contact Form 7: form liên hệ và newsletter.
 
-## Plugin tự cài
+## Theme
 
-- Yoast SEO
-- Contact Form 7
-- UpdraftPlus
-- W3 Total Cache
-- Elementor
+- Parent theme: Astra, cài tự động bằng bootstrap.
+- Child theme: `wp-content/themes/kickzone-child`.
+- Font: `Space Grotesk` cho heading/brand, `Manrope` cho body/UI/price.
+- Màu chính: cam `#FF4713`, đen `#0A0A0A`, trắng `#FFFFFF`.
+- Header được khóa đồng bộ để khi chuyển page logo/menu không đổi layout.
+
+## Plugins tự cài
+
+| Plugin | Mục đích |
+|--------|----------|
+| WooCommerce | Bán hàng |
+| Yoast SEO | SEO metadata |
+| Contact Form 7 | Form liên hệ/newsletter |
+| UpdraftPlus | Backup |
+| W3 Total Cache | Cache |
+
+## Chạy lại script nội dung
+
+Khi cần apply lại pages/products/theme settings vào WordPress đang chạy:
+
+```powershell
+docker compose run --rm --entrypoint sh wordpress_bootstrap -c "cd /var/www/html && wp --allow-root eval-file /work/wp-run-with-errors.php"
+docker compose run --rm --entrypoint sh wordpress_bootstrap -c "cd /var/www/html && wp --allow-root cache flush"
+```
+
+Hoặc dùng helper:
+
+```powershell
+docker compose run --rm --entrypoint sh wordpress_bootstrap /work/wp-run-kickzone.sh
+```
 
 ## Ghi chú
 
-Repo này không chứa database dump cũ. Mỗi lần reset volume, WordPress sẽ được cài mới và script bootstrap sẽ tạo lại nội dung demo Blossom Chic tiếng Việt.
+- Repo không commit `wp-content/uploads/` và không commit database dump. Ảnh demo được tải lại khi bootstrap chạy.
+- Repo không commit cache/runtime WordPress. Các thư mục đó được tạo trong Docker volume.
+- Người clone chỉ cần Docker và tài khoản trong `accounts.txt` để login.

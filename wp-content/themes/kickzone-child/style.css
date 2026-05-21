@@ -1,0 +1,2386 @@
+/*
+Theme Name:   KickZone Child
+Theme URI:    http://localhost:8080
+Description:  KickZone — Sneaker Shop child theme for Astra. Dark editorial streetwear aesthetic.
+Author:       KickZone Team
+Template:     astra
+Version:      1.0.0
+*/
+
+/* =====================================================
+   IMPORT FONTS
+   ===================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap');
+
+/* =====================================================
+   CSS VARIABLES
+   ===================================================== */
+:root {
+  --kz-black:      #0A0A0A;
+  --kz-white:      #F5F4F0;
+  --kz-orange:     #FF4713;
+  --kz-orange-dk:  #CC3A0A;
+  --kz-gray-dark:  #1A1A1A;
+  --kz-gray-mid:   #2E2E2E;
+  --kz-gray-text:  #111111;
+  --kz-cream:      #F0EDE6;
+  --kz-radius:     0px;
+  --kz-transition: 0.25s ease;
+}
+
+/* =====================================================
+   BASE
+   ===================================================== */
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background-color: var(--kz-black) !important;
+  color: var(--kz-white) !important;
+  font-family: 'DM Sans', sans-serif !important;
+  font-size: 16px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: var(--kz-orange);
+  text-decoration: none;
+  transition: color var(--kz-transition);
+}
+a:hover { color: var(--kz-orange-dk); }
+
+img { display: block; max-width: 100%; height: auto; }
+
+/* =====================================================
+   TYPOGRAPHY
+   ===================================================== */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 700;
+  color: var(--kz-white);
+  line-height: 1.2;
+  margin-bottom: 0.5em;
+}
+
+.kz-display {
+  font-family: 'Bebas Neue', sans-serif !important;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  line-height: 0.95 !important;
+}
+
+p { color: var(--kz-white); margin-bottom: 1rem; }
+
+/* =====================================================
+   HEADER — ASTRA OVERRIDE
+   ===================================================== */
+#masthead,
+.site-header,
+.ast-primary-header-bar,
+.ast-above-header-bar,
+.ast-below-header-bar {
+  background-color: var(--kz-black) !important;
+  border-bottom: 1px solid var(--kz-gray-mid) !important;
+}
+
+/* Sticky header */
+.ast-primary-header-bar {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 9999 !important;
+}
+
+/* Logo */
+.site-logo img,
+.custom-logo { max-height: 44px !important; width: auto !important; }
+
+/* Nav links */
+.main-navigation a,
+.ast-primary-header-bar .main-navigation a,
+#site-navigation a {
+  color: var(--kz-white) !important;
+  font-family: 'DM Sans', sans-serif !important;
+  font-weight: 600 !important;
+  font-size: 13px !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.1em !important;
+  padding: 8px 14px !important;
+  transition: color var(--kz-transition) !important;
+}
+.main-navigation a:hover,
+#site-navigation a:hover { color: var(--kz-orange) !important; }
+
+/* Dropdown menu */
+.main-navigation .sub-menu {
+  background: var(--kz-gray-dark) !important;
+  border: 1px solid var(--kz-gray-mid) !important;
+  border-top: 2px solid var(--kz-orange) !important;
+}
+.main-navigation .sub-menu a {
+  font-size: 12px !important;
+  padding: 10px 16px !important;
+  border-bottom: 1px solid var(--kz-gray-mid) !important;
+}
+
+/* Cart icon */
+.ast-header-woo-cart .count,
+.woocommerce-cart-item__quantity { background: var(--kz-orange) !important; }
+
+/* =====================================================
+   ANNOUNCEMENT TICKER
+   ===================================================== */
+.kz-ticker {
+  background: var(--kz-orange);
+  overflow: hidden;
+  padding: 9px 0;
+  width: 100%;
+}
+.kz-ticker-track {
+  display: flex;
+  align-items: center;
+  gap: 60px;
+  animation: kz-scroll 28s linear infinite;
+  white-space: nowrap;
+  width: max-content;
+}
+.kz-ticker-track span {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  color: var(--kz-white);
+  text-transform: uppercase;
+}
+.kz-ticker-track .kz-dot {
+  width: 4px; height: 4px;
+  background: rgba(255,255,255,0.5);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+@keyframes kz-scroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* =====================================================
+   BUTTONS
+   ===================================================== */
+.wp-block-button__link,
+.woocommerce a.button,
+.woocommerce button.button,
+.woocommerce input.button,
+.woocommerce #respond input#submit,
+.woocommerce .cart .button,
+.woocommerce .checkout-button,
+.elementor-button,
+.ast-button,
+button[type="submit"],
+input[type="submit"] {
+  background: var(--kz-orange) !important;
+  color: var(--kz-white) !important;
+  border: none !important;
+  font-family: 'DM Sans', sans-serif !important;
+  font-weight: 700 !important;
+  font-size: 13px !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.1em !important;
+  padding: 14px 32px !important;
+  border-radius: 0 !important;
+  cursor: pointer;
+  transition: background var(--kz-transition) !important;
+  display: inline-block;
+}
+.wp-block-button__link:hover,
+.woocommerce a.button:hover,
+.woocommerce button.button:hover,
+.woocommerce #respond input#submit:hover {
+  background: var(--kz-orange-dk) !important;
+  color: var(--kz-white) !important;
+}
+
+/* Button outline variant */
+.kz-btn-outline {
+  background: transparent !important;
+  border: 2px solid var(--kz-white) !important;
+  color: var(--kz-white) !important;
+}
+.kz-btn-outline:hover {
+  background: var(--kz-white) !important;
+  color: var(--kz-black) !important;
+}
+
+/* =====================================================
+   FORMS / INPUTS
+   ===================================================== */
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="number"],
+input[type="password"],
+input[type="search"],
+textarea,
+select {
+  background: var(--kz-gray-dark) !important;
+  border: 1px solid var(--kz-gray-mid) !important;
+  color: var(--kz-white) !important;
+  border-radius: 0 !important;
+  padding: 12px 16px !important;
+  font-family: 'DM Sans', sans-serif !important;
+  font-size: 14px !important;
+  transition: border-color var(--kz-transition) !important;
+  width: 100%;
+}
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: var(--kz-orange) !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+::placeholder { color: var(--kz-gray-text) !important; opacity: 1; }
+label {
+  color: var(--kz-gray-text) !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.1em !important;
+  margin-bottom: 6px !important;
+  display: block;
+}
+
+/* =====================================================
+   WOOCOMMERCE — SHOP / ARCHIVE
+   ===================================================== */
+.woocommerce-page,
+body.woocommerce {
+  background: var(--kz-black) !important;
+}
+
+/* Products grid */
+.woocommerce ul.products {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 24px !important;
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+@media (max-width: 900px) {
+  .woocommerce ul.products { grid-template-columns: repeat(2, 1fr) !important; }
+}
+@media (max-width: 600px) {
+  .woocommerce ul.products { grid-template-columns: 1fr !important; }
+}
+
+/* Product card */
+.woocommerce ul.products li.product {
+  background: var(--kz-gray-dark) !important;
+  border: 1px solid var(--kz-gray-mid) !important;
+  border-radius: 0 !important;
+  overflow: hidden;
+  transition: transform var(--kz-transition), border-color var(--kz-transition), box-shadow var(--kz-transition) !important;
+  position: relative;
+  padding: 0 !important;
+  margin: 0 !important;
+  width: 100% !important;
+  float: none !important;
+}
+.woocommerce ul.products li.product:hover {
+  transform: translateY(-6px) !important;
+  border-color: var(--kz-orange) !important;
+  box-shadow: 0 12px 32px rgba(255, 71, 19, 0.15) !important;
+}
+
+/* Card image */
+.woocommerce ul.products li.product .woocommerce-LoopProduct-link {
+  display: block;
+}
+.woocommerce ul.products li.product img {
+  width: 100% !important;
+  height: 280px !important;
+  object-fit: cover !important;
+  transition: transform var(--kz-transition) !important;
+}
+.woocommerce ul.products li.product:hover img {
+  transform: scale(1.04) !important;
+}
+
+/* Card info */
+.woocommerce ul.products li.product .woocommerce-loop-product__title {
+  font-family: 'DM Sans', sans-serif !important;
+  font-weight: 600 !important;
+  font-size: 15px !important;
+  color: var(--kz-white) !important;
+  padding: 16px 16px 4px !important;
+  margin: 0 !important;
+}
+
+.woocommerce ul.products li.product .price {
+  padding: 0 16px 8px !important;
+  display: block;
+}
+
+/* Add to cart on card */
+.woocommerce ul.products li.product .button {
+  margin: 0 16px 16px !important;
+  width: calc(100% - 32px) !important;
+  text-align: center !important;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity var(--kz-transition), transform var(--kz-transition) !important;
+}
+.woocommerce ul.products li.product:hover .button {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
+/* Sale badge */
+.woocommerce ul.products li.product .onsale,
+.woocommerce span.onsale {
+  background: var(--kz-orange) !important;
+  color: var(--kz-white) !important;
+  font-family: 'DM Sans', sans-serif !important;
+  font-weight: 700 !important;
+  font-size: 11px !important;
+  letter-spacing: 0.1em !important;
+  text-transform: uppercase !important;
+  border-radius: 0 !important;
+  padding: 4px 10px !important;
+  top: 12px !important;
+  left: 12px !important;
+  right: auto !important;
+  min-height: unset !important;
+  min-width: unset !important;
+  line-height: 1.4 !important;
+}
+
+/* =====================================================
+   WOOCOMMERCE — PRICE
+   ===================================================== */
+.woocommerce-Price-amount,
+.woocommerce .price,
+.price .amount {
+  font-family: 'Space Mono', monospace !important;
+  color: var(--kz-orange) !important;
+  font-size: 16px !important;
+  font-weight: 700 !important;
+}
+.woocommerce del .woocommerce-Price-amount,
+.price del .amount {
+  color: var(--kz-gray-text) !important;
+  font-size: 13px !important;
+  font-weight: 400 !important;
+}
+.woocommerce ins,
+.price ins { text-decoration: none !important; }
+
+/* =====================================================
+   WOOCOMMERCE — SINGLE PRODUCT
+   ===================================================== */
+.single-product .product_title {
+  font-family: 'Bebas Neue', sans-serif !important;
+  font-size: 44px !important;
+  letter-spacing: 0.05em !important;
+  text-transform: uppercase !important;
+  color: var(--kz-white) !important;
+  line-height: 1 !important;
+}
+
+.single-product .woocommerce-product-rating { margin-bottom: 16px; }
+
+.single-product .price {
+  font-size: 28px !important;
+  margin-bottom: 24px !important;
+}
+
+/* Size / variation buttons */
+.woocommerce div.product form.cart .variations td.value select,
+.woocommerce div.product form.cart .variations td.value {
+  color: var(--kz-white) !important;
+}
+
+.single-product .woocommerce-tabs {
+  border-top: 1px solid var(--kz-gray-mid);
+  margin-top: 40px;
+}
+.woocommerce-tabs ul.tabs {
+  background: transparent !important;
+  border-bottom: 1px solid var(--kz-gray-mid) !important;
+  padding: 0 !important;
+  margin-bottom: 0 !important;
+}
+.woocommerce-tabs ul.tabs li {
+  background: transparent !important;
+  border: none !important;
+}
+.woocommerce-tabs ul.tabs li a {
+  font-family: 'DM Sans', sans-serif !important;
+  font-weight: 700 !important;
+  font-size: 13px !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.1em !important;
+  color: var(--kz-gray-text) !important;
+  padding: 14px 20px !important;
+}
+.woocommerce-tabs ul.tabs li.active a { color: var(--kz-white) !important; }
+.woocommerce-tabs ul.tabs li.active::after {
+  background: var(--kz-orange) !important;
+  height: 2px !important;
+  bottom: -1px !important;
+}
+.woocommerce-tabs .panel {
+  background: var(--kz-gray-dark) !important;
+  border: 1px solid var(--kz-gray-mid) !important;
+  padding: 32px !important;
+  margin-top: 0 !important;
+}
+
+/* Related products */
+.related h2,
+.upsells h2 {
+  font-family: 'Bebas Neue', sans-serif !important;
+  font-size: 36px !important;
+  letter-spacing: 0.05em !important;
+  text-transform: uppercase !important;
+  color: var(--kz-white) !important;
+  margin-bottom: 24px !important;
+  border-bottom: 2px solid var(--kz-orange);
+  padding-bottom: 12px;
+  display: inline-block;
+}
+
+/* =====================================================
+   WOOCOMMERCE — CART / CHECKOUT
+   ===================================================== */
+.woocommerce-cart table.cart,
+.woocommerce-checkout form.checkout {
+  background: transparent !important;
+}
+.woocommerce table.shop_table {
+  border: 1px solid var(--kz-gray-mid) !important;
+}
+.woocommerce table.shop_table th {
+  background: var(--kz-gray-dark) !important;
+  color: var(--kz-gray-text) !important;
+  font-family: 'DM Sans', sans-serif !important;
+  font-weight: 700 !important;
+  font-size: 11px !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.1em !important;
+  border-color: var(--kz-gray-mid) !important;
+}
+.woocommerce table.shop_table td {
+  border-color: var(--kz-gray-mid) !important;
+  color: var(--kz-white) !important;
+  background: transparent !important;
+}
+
+/* =====================================================
+   PAGE HEADER — SHOP / BLOG / PAGES
+   ===================================================== */
+.ast-archive-description,
+.woocommerce-products-header,
+.ast-page-header-content {
+  background: var(--kz-gray-dark) !important;
+  padding: 48px 0 !important;
+  margin-bottom: 40px !important;
+  border-bottom: 1px solid var(--kz-gray-mid) !important;
+}
+
+.ast-archive-description h1,
+.woocommerce-products-header h1,
+.page-title {
+  font-family: 'Bebas Neue', sans-serif !important;
+  font-size: 72px !important;
+  letter-spacing: 0.04em !important;
+  text-transform: uppercase !important;
+  color: var(--kz-white) !important;
+  line-height: 1 !important;
+  margin: 0 !important;
+}
+
+/* Breadcrumb */
+.woocommerce-breadcrumb,
+.ast-breadcrumbs-wrapper {
+  color: var(--kz-gray-text) !important;
+  font-size: 12px !important;
+  font-family: 'DM Sans', sans-serif !important;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 8px !important;
+}
+.woocommerce-breadcrumb a { color: var(--kz-gray-text) !important; }
+.woocommerce-breadcrumb a:hover { color: var(--kz-orange) !important; }
+
+/* =====================================================
+   SIDEBAR / WIDGETS
+   ===================================================== */
+.widget-area,
+#secondary { background: transparent !important; }
+
+.widget {
+  background: var(--kz-gray-dark) !important;
+  border: 1px solid var(--kz-gray-mid) !important;
+  padding: 24px !important;
+  margin-bottom: 24px !important;
+}
+
+.widget-title,
+.widgettitle {
+  font-family: 'DM Sans', sans-serif !important;
+  font-weight: 700 !important;
+  font-size: 11px !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.15em !important;
+  color: var(--kz-gray-text) !important;
+  border-bottom: 1px solid var(--kz-gray-mid) !important;
+  padding-bottom: 12px !important;
+  margin-bottom: 16px !important;
+}
+
+.widget ul li {
+  border-bottom: 1px solid var(--kz-gray-mid) !important;
+  padding: 8px 0 !important;
+  color: var(--kz-white) !important;
+}
+.widget ul li a { color: var(--kz-white) !important; }
+.widget ul li a:hover { color: var(--kz-orange) !important; }
+
+/* =====================================================
+   BLOG — POST CARDS
+   ===================================================== */
+.ast-article-post,
+.type-post,
+article.post {
+  background: var(--kz-gray-dark) !important;
+  border: 1px solid var(--kz-gray-mid) !important;
+  margin-bottom: 32px !important;
+  transition: border-color var(--kz-transition), transform var(--kz-transition) !important;
+}
+.ast-article-post:hover,
+.type-post:hover,
+article.post:hover {
+  border-color: var(--kz-orange) !important;
+  transform: translateY(-4px) !important;
+}
+
+.entry-title a {
+  font-family: 'DM Sans', sans-serif !important;
+  font-weight: 700 !important;
+  color: var(--kz-white) !important;
+}
+.entry-title a:hover { color: var(--kz-orange) !important; }
+
+.entry-meta,
+.entry-footer {
+  color: var(--kz-gray-text) !important;
+  font-size: 12px !important;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.entry-meta a,
+.entry-footer a { color: var(--kz-gray-text) !important; }
+.entry-meta a:hover,
+.entry-footer a:hover { color: var(--kz-orange) !important; }
+
+/* Category badge on posts */
+.cat-links a {
+  background: var(--kz-orange) !important;
+  color: var(--kz-white) !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.1em !important;
+  padding: 3px 10px !important;
+  display: inline-block;
+}
+
+/* =====================================================
+   SINGLE POST
+   ===================================================== */
+.single .entry-content h2,
+.single .entry-content h3 {
+  border-left: 3px solid var(--kz-orange);
+  padding-left: 16px;
+  margin-top: 2em;
+}
+
+/* =====================================================
+   FOOTER
+   ===================================================== */
+#colophon,
+.site-footer,
+.ast-small-footer,
+.footer-widget-area {
+  background: var(--kz-gray-dark) !important;
+  border-top: 1px solid var(--kz-gray-mid) !important;
+  color: var(--kz-gray-text) !important;
+}
+
+.footer-widget-area .widget-title { color: var(--kz-white) !important; }
+.site-footer a { color: var(--kz-gray-text) !important; }
+.site-footer a:hover { color: var(--kz-orange) !important; }
+
+.ast-small-footer-copyright {
+  color: var(--kz-gray-text) !important;
+  font-size: 12px !important;
+  text-align: center;
+  padding: 16px 0 !important;
+  border-top: 1px solid var(--kz-gray-mid) !important;
+}
+
+/* =====================================================
+   CONTACT FORM 7
+   ===================================================== */
+.wpcf7 input[type="text"],
+.wpcf7 input[type="email"],
+.wpcf7 input[type="tel"],
+.wpcf7 textarea {
+  background: var(--kz-gray-dark) !important;
+  border: 1px solid var(--kz-gray-mid) !important;
+  color: var(--kz-white) !important;
+}
+.wpcf7 input[type="submit"] {
+  background: var(--kz-orange) !important;
+  color: var(--kz-white) !important;
+  border: none !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.1em !important;
+  padding: 14px 32px !important;
+  cursor: pointer;
+}
+.wpcf7 input[type="submit"]:hover { background: var(--kz-orange-dk) !important; }
+div.wpcf7-response-output {
+  border-color: var(--kz-orange) !important;
+  color: var(--kz-white) !important;
+  background: rgba(255, 71, 19, 0.1) !important;
+}
+
+/* =====================================================
+   SECTION UTILITIES
+   ===================================================== */
+.kz-section { padding: 80px 0; }
+.kz-section-dark { background: var(--kz-black); }
+.kz-section-card { background: var(--kz-gray-dark); }
+.kz-section-cream { background: var(--kz-cream) !important; color: var(--kz-black) !important; }
+.kz-section-cream h2,
+.kz-section-cream h3,
+.kz-section-cream p { color: var(--kz-black) !important; }
+.kz-section-orange { background: var(--kz-orange) !important; color: var(--kz-white) !important; }
+
+.kz-container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+.kz-section-label {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--kz-orange);
+  display: block;
+  margin-bottom: 8px;
+}
+
+.kz-divider {
+  width: 48px; height: 3px;
+  background: var(--kz-orange);
+  margin: 16px 0 24px;
+}
+
+/* =====================================================
+   TRUST STRIP
+   ===================================================== */
+.kz-trust-strip {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--kz-gray-mid);
+  border-top: 1px solid var(--kz-gray-mid);
+  border-bottom: 1px solid var(--kz-gray-mid);
+}
+.kz-trust-item {
+  background: var(--kz-gray-dark);
+  padding: 28px 24px;
+  text-align: center;
+}
+.kz-trust-icon {
+  font-size: 28px;
+  margin-bottom: 8px;
+  display: block;
+}
+.kz-trust-title {
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--kz-white);
+  margin-bottom: 4px;
+  display: block;
+}
+.kz-trust-sub {
+  font-size: 12px;
+  color: var(--kz-gray-text);
+}
+@media (max-width: 768px) {
+  .kz-trust-strip { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* =====================================================
+   RESPONSIVE
+   ===================================================== */
+@media (max-width: 768px) {
+  .ast-archive-description h1,
+  .page-title { font-size: 48px !important; }
+  .single-product .product_title { font-size: 32px !important; }
+  .kz-section { padding: 48px 0; }
+}
+
+/* =====================================================
+   ADMIN BAR
+   ===================================================== */
+#wpadminbar { background: var(--kz-black) !important; }
+#wpadminbar .ab-item { color: var(--kz-gray-text) !important; }
+#wpadminbar a:hover .ab-item { color: var(--kz-orange) !important; }
+
+/* =====================================================
+   LOGO — site title text fallback
+   ===================================================== */
+.site-title,
+.ast-site-title a {
+  font-family: 'Bebas Neue', sans-serif !important;
+  font-size: 28px !important;
+  letter-spacing: 0.12em !important;
+  color: var(--kz-white) !important;
+  text-transform: uppercase !important;
+}
+.site-title a:hover,
+.ast-site-title a:hover { color: var(--kz-orange) !important; }
+
+/* =====================================================
+   [kz_recent_posts] — Blog preview grid
+   ===================================================== */
+.kz-posts-grid {
+  display: grid;
+  gap: 28px;
+}
+.kz-posts-cols-1 { grid-template-columns: 1fr; }
+.kz-posts-cols-2 { grid-template-columns: repeat(2, 1fr); }
+.kz-posts-cols-3 { grid-template-columns: repeat(3, 1fr); }
+.kz-posts-cols-4 { grid-template-columns: repeat(4, 1fr); }
+
+@media (max-width: 1024px) {
+  .kz-posts-cols-3,
+  .kz-posts-cols-4 { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 640px) {
+  .kz-posts-grid { grid-template-columns: 1fr !important; }
+}
+
+.kz-post-card {
+  background: var(--kz-gray-dark);
+  border: 1px solid var(--kz-gray-mid);
+  overflow: hidden;
+  transition: transform var(--kz-transition), border-color var(--kz-transition), box-shadow var(--kz-transition);
+  display: flex;
+  flex-direction: column;
+}
+.kz-post-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--kz-orange);
+  box-shadow: 0 12px 32px rgba(255,71,19,0.12);
+}
+
+.kz-post-card__thumb {
+  display: block;
+  overflow: hidden;
+  aspect-ratio: 16/9;
+  background: var(--kz-gray-mid);
+}
+.kz-post-card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+.kz-post-card:hover .kz-post-card__img { transform: scale(1.06); }
+
+.kz-post-card__thumb-placeholder {
+  width: 100%;
+  height: 200px;
+  background: var(--kz-gray-mid);
+}
+
+.kz-post-card__body {
+  padding: 24px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.kz-post-card__cat {
+  display: inline-block;
+  background: var(--kz-orange);
+  color: var(--kz-white);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  margin-bottom: 8px;
+}
+
+.kz-post-card__date {
+  font-size: 11px;
+  color: var(--kz-gray-text);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin: 0 0 8px;
+}
+
+.kz-post-card__title {
+  font-family: 'DM Sans', sans-serif !important;
+  font-size: 17px !important;
+  font-weight: 700 !important;
+  line-height: 1.35 !important;
+  margin: 0 0 12px !important;
+  flex: 1;
+}
+.kz-post-card__title a {
+  color: var(--kz-white) !important;
+  text-decoration: none;
+  transition: color var(--kz-transition);
+}
+.kz-post-card__title a:hover { color: var(--kz-orange) !important; }
+
+.kz-post-card__excerpt {
+  font-size: 13px;
+  color: var(--kz-gray-text);
+  line-height: 1.6;
+  margin: 0 0 16px;
+}
+
+.kz-post-card__link {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--kz-orange) !important;
+  text-decoration: none;
+  margin-top: auto;
+  transition: color var(--kz-transition);
+}
+.kz-post-card__link:hover { color: var(--kz-orange-dk) !important; }
+
+/* =====================================================
+   SINGLE POST — article body
+   ===================================================== */
+.single-post .entry-content {
+  font-size: 17px;
+  line-height: 1.8;
+  color: #111111 !important;
+  max-width: 760px;
+}
+.single-post .entry-content h2 {
+  font-family: 'Bebas Neue', sans-serif !important;
+  font-size: 32px !important;
+  letter-spacing: 0.05em !important;
+  color: var(--kz-white) !important;
+  border-left: 4px solid var(--kz-orange);
+  padding-left: 16px;
+  margin: 2em 0 0.5em;
+}
+.single-post .entry-content h3 {
+  font-size: 20px !important;
+  font-weight: 700 !important;
+  color: var(--kz-white) !important;
+  margin-top: 1.5em;
+}
+.single-post .entry-content p { color: #111111 !important; }
+.single-post .entry-content strong { color: var(--kz-white); }
+.single-post .entry-content a { color: var(--kz-orange) !important; }
+
+/* Post header meta */
+.single-post .entry-header {
+  border-bottom: 1px solid var(--kz-gray-mid);
+  padding-bottom: 32px;
+  margin-bottom: 40px;
+}
+.single-post .entry-title {
+  font-family: 'Bebas Neue', sans-serif !important;
+  font-size: clamp(36px, 6vw, 64px) !important;
+  letter-spacing: 0.04em !important;
+  line-height: 1 !important;
+  color: var(--kz-white) !important;
+  text-transform: uppercase !important;
+}
+
+/* Featured image */
+.single-post .post-thumbnail img {
+  width: 100%;
+  max-height: 520px;
+  object-fit: cover;
+  margin-bottom: 40px;
+}
+
+/* Blog archive cards — override default Astra */
+.ast-article-post .post-thumb img {
+  height: 240px;
+  object-fit: cover;
+  width: 100%;
+}
+
+/* =====================================================
+   HOMEPAGE SECTIONS — padding fix
+   ===================================================== */
+.entry-content .kz-section,
+.page .entry-content > section {
+  margin-left: calc(-50vw + 50%);
+  margin-right: calc(-50vw + 50%);
+  width: 100vw;
+}
+
+/* Hero section full bleed */
+.kz-hero {
+  margin-left: calc(-50vw + 50%);
+  margin-right: calc(-50vw + 50%);
+  width: 100vw;
+  box-sizing: border-box;
+}
+
+/* =====================================================
+   WooCommerce — sort bar & result count
+   ===================================================== */
+.woocommerce-ordering select,
+.woocommerce-result-count {
+  color: var(--kz-white) !important;
+  font-size: 13px !important;
+}
+
+/* =====================================================
+   MOBILE — extra breakpoints
+   ===================================================== */
+@media (max-width: 480px) {
+  .kz-trust-strip { grid-template-columns: 1fr !important; }
+  .kz-trust-item { padding: 20px 16px; }
+  .kz-ticker-track { gap: 32px; }
+}
+
+/* =====================================================
+   HOMEPAGE — Astra full-width override
+   ===================================================== */
+.home.page .ast-container,
+.home.page .entry-content {
+  max-width: 100% !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+.home.page .entry-header,
+.home.page .entry-footer { display: none; }
+.home.page .site-content { padding-top: 0 !important; }
+
+/* =====================================================
+   HOMEPAGE — Hero
+   ===================================================== */
+.kz-hp-hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: flex-end;
+  padding-bottom: 80px;
+  overflow: hidden;
+  background: var(--kz-black);
+}
+.kz-hp-hero__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+.kz-hp-hero__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+  filter: brightness(0.45);
+}
+.kz-hp-hero__overlay {
+  position: relative;
+  z-index: 2;
+  padding: 0 40px;
+  max-width: 900px;
+}
+.kz-hp-hero__title {
+  font-family: 'Bebas Neue', sans-serif !important;
+  font-size: clamp(80px, 13vw, 160px) !important;
+  line-height: 0.88 !important;
+  letter-spacing: 0.02em !important;
+  color: var(--kz-white) !important;
+  text-transform: uppercase !important;
+  margin: 12px 0 28px !important;
+}
+.kz-hp-hero__title em {
+  color: var(--kz-orange);
+  font-style: normal;
+}
+.kz-hp-hero__sub {
+  font-size: 16px;
+  color: rgba(245,244,240,0.65);
+  margin-bottom: 36px;
+  max-width: 480px;
+  letter-spacing: 0.02em;
+}
+.kz-hp-hero__ctas { display: flex; gap: 16px; flex-wrap: wrap; }
+
+/* Hero scroll indicator */
+.kz-hp-hero__scroll {
+  position: absolute;
+  bottom: 32px;
+  right: 40px;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: rgba(245,244,240,0.4);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+.kz-hp-hero__scroll-line {
+  width: 1px;
+  height: 48px;
+  background: linear-gradient(to bottom, rgba(245,244,240,0.4), transparent);
+}
+
+/* =====================================================
+   HOMEPAGE — Buttons
+   ===================================================== */
+.kz-btn-primary {
+  display: inline-block;
+  background: var(--kz-orange);
+  color: var(--kz-white) !important;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 16px 36px;
+  text-decoration: none;
+  transition: background var(--kz-transition), transform var(--kz-transition);
+}
+.kz-btn-primary:hover {
+  background: var(--kz-orange-dk) !important;
+  color: var(--kz-white) !important;
+  transform: translateY(-2px);
+}
+.kz-btn-ghost {
+  display: inline-block;
+  background: transparent;
+  color: var(--kz-white) !important;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 14px 34px;
+  border: 2px solid rgba(245,244,240,0.35);
+  text-decoration: none;
+  transition: border-color var(--kz-transition), background var(--kz-transition);
+}
+.kz-btn-ghost:hover {
+  border-color: var(--kz-white) !important;
+  color: var(--kz-white) !important;
+  background: rgba(245,244,240,0.08);
+}
+.kz-btn-dark {
+  display: inline-block;
+  background: var(--kz-black);
+  color: var(--kz-white) !important;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 16px 36px;
+  text-decoration: none;
+  transition: background var(--kz-transition);
+}
+.kz-btn-dark:hover { background: #222 !important; color: var(--kz-white) !important; }
+.kz-btn-outline-dark {
+  display: inline-block;
+  background: transparent;
+  color: var(--kz-black) !important;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 14px 34px;
+  border: 2px solid var(--kz-black);
+  text-decoration: none;
+  transition: background var(--kz-transition), color var(--kz-transition);
+}
+.kz-btn-outline-dark:hover {
+  background: var(--kz-black) !important;
+  color: var(--kz-white) !important;
+}
+
+/* =====================================================
+   HOMEPAGE — Featured Drop (50/50 split)
+   ===================================================== */
+.kz-hp-drop {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 600px;
+  background: var(--kz-black);
+}
+.kz-hp-drop__image {
+  overflow: hidden;
+  position: relative;
+  background: var(--kz-gray-dark);
+}
+.kz-hp-drop__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+.kz-hp-drop:hover .kz-hp-drop__img { transform: scale(1.04); }
+.kz-hp-drop__info {
+  padding: 60px 56px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: var(--kz-gray-dark);
+  border-left: 1px solid var(--kz-gray-mid);
+}
+.kz-hp-drop__name {
+  font-family: 'Bebas Neue', sans-serif !important;
+  font-size: clamp(48px, 5vw, 72px) !important;
+  letter-spacing: 0.03em !important;
+  line-height: 0.92 !important;
+  color: var(--kz-white) !important;
+  margin: 8px 0 20px !important;
+  text-transform: uppercase !important;
+}
+.kz-hp-drop__price {
+  font-family: 'Space Mono', monospace;
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--kz-orange);
+  margin: 0 0 20px;
+}
+.kz-hp-drop__desc {
+  color: #111111;
+  font-size: 15px;
+  line-height: 1.7;
+  margin-bottom: 36px;
+  max-width: 380px;
+}
+.kz-hp-drop__more {
+  display: inline-block;
+  margin-top: 16px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--kz-gray-text) !important;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: color var(--kz-transition);
+}
+.kz-hp-drop__more:hover { color: var(--kz-white) !important; }
+
+/* =====================================================
+   HOMEPAGE — Category tiles
+   ===================================================== */
+.kz-hp-cats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  background: var(--kz-gray-mid);
+}
+.kz-hp-cat {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 3/4;
+  display: block;
+  text-decoration: none;
+  background: var(--kz-gray-dark);
+}
+.kz-hp-cat__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.5);
+  transition: filter 0.4s ease, transform 0.5s ease;
+}
+.kz-hp-cat:hover .kz-hp-cat__img {
+  filter: brightness(0.35);
+  transform: scale(1.06);
+}
+.kz-hp-cat__label {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 32px 28px;
+  background: linear-gradient(to top, rgba(10,10,10,0.9) 0%, transparent 100%);
+}
+.kz-hp-cat__label h3 {
+  font-family: 'Bebas Neue', sans-serif !important;
+  font-size: 40px !important;
+  letter-spacing: 0.06em !important;
+  color: var(--kz-white) !important;
+  margin: 0 0 4px !important;
+  text-transform: uppercase !important;
+  line-height: 1 !important;
+}
+.kz-hp-cat__label span {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--kz-orange);
+}
+.kz-hp-cat::after {
+  content: 'KHÁM PHÁ →';
+  position: absolute;
+  bottom: 28px;
+  right: 28px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: var(--kz-white);
+  opacity: 0;
+  transition: opacity var(--kz-transition), transform var(--kz-transition);
+  transform: translateX(-8px);
+}
+.kz-hp-cat:hover::after {
+  opacity: 0.6;
+  transform: translateX(0);
+}
+
+/* =====================================================
+   HOMEPAGE — Section wrapper
+   ===================================================== */
+.kz-hp-section {
+  padding: 72px 40px;
+  background: var(--kz-black);
+}
+.kz-hp-section--dark { background: var(--kz-gray-dark); }
+.kz-hp-section--cream { background: var(--kz-cream); }
+.kz-hp-section__head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.kz-hp-section__title {
+  font-family: 'Bebas Neue', sans-serif !important;
+  font-size: clamp(40px, 6vw, 64px) !important;
+  letter-spacing: 0.04em !important;
+  color: var(--kz-white) !important;
+  margin: 0 !important;
+  text-transform: uppercase !important;
+  line-height: 1 !important;
+}
+.kz-hp-section--cream .kz-hp-section__title { color: var(--kz-black) !important; }
+.kz-hp-section__more {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--kz-gray-text) !important;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color var(--kz-transition);
+}
+.kz-hp-section__more:hover { color: var(--kz-orange) !important; }
+
+/* =====================================================
+   HOMEPAGE — Sale banner
+   ===================================================== */
+.kz-hp-sale {
+  background: var(--kz-orange);
+  padding: 72px 40px;
+  text-align: center;
+}
+.kz-hp-sale__inner { max-width: 700px; margin: 0 auto; }
+.kz-hp-sale h2 {
+  font-family: 'Bebas Neue', sans-serif !important;
+  font-size: clamp(40px, 6vw, 72px) !important;
+  letter-spacing: 0.03em !important;
+  color: var(--kz-white) !important;
+  margin: 8px 0 16px !important;
+  line-height: 1 !important;
+  text-transform: uppercase !important;
+}
+.kz-hp-sale p {
+  color: rgba(245,244,240,0.8);
+  font-size: 15px;
+  margin-bottom: 36px;
+}
+
+/* =====================================================
+   HOMEPAGE — Brand Story (cream split)
+   ===================================================== */
+.kz-hp-story {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 560px;
+  background: var(--kz-cream);
+}
+.kz-hp-story__image { overflow: hidden; }
+.kz-hp-story__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.kz-hp-story__text {
+  padding: 72px 64px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.kz-hp-story__text h2 {
+  font-family: 'Bebas Neue', sans-serif !important;
+  font-size: clamp(44px, 5vw, 64px) !important;
+  letter-spacing: 0.04em !important;
+  color: var(--kz-black) !important;
+  margin: 8px 0 24px !important;
+  text-transform: uppercase !important;
+  line-height: 0.95 !important;
+}
+.kz-hp-story__text p {
+  color: #3A3A3A !important;
+  font-size: 16px;
+  line-height: 1.75;
+  margin-bottom: 16px;
+}
+
+/* =====================================================
+   HOMEPAGE — Trust strip (SVG icons)
+   ===================================================== */
+.kz-trust-icon {
+  width: 28px;
+  height: 28px;
+  color: var(--kz-orange);
+  margin: 0 auto 12px;
+  display: block;
+  stroke-width: 1.5;
+}
+
+/* =====================================================
+   HOMEPAGE — Newsletter
+   ===================================================== */
+.kz-hp-newsletter {
+  background: var(--kz-gray-dark);
+  padding: 80px 40px;
+  text-align: center;
+  border-top: 1px solid var(--kz-gray-mid);
+}
+.kz-hp-newsletter h2 {
+  font-family: 'Bebas Neue', sans-serif !important;
+  font-size: clamp(36px, 5vw, 56px) !important;
+  letter-spacing: 0.04em !important;
+  color: var(--kz-white) !important;
+  margin: 8px 0 12px !important;
+  text-transform: uppercase !important;
+}
+.kz-hp-newsletter p {
+  color: var(--kz-gray-text);
+  font-size: 15px;
+  max-width: 480px;
+  margin: 0 auto 32px;
+}
+.kz-hp-newsletter .wpcf7-form {
+  max-width: 480px;
+  margin: 0 auto;
+}
+.kz-hp-newsletter .wpcf7-form-control-wrap { display: block; margin-bottom: 12px; }
+.kz-hp-newsletter__note {
+  font-size: 12px !important;
+  color: #111111 !important;
+  margin-top: 16px !important;
+}
+
+/* =====================================================
+   HOMEPAGE — Responsive
+   ===================================================== */
+@media (max-width: 1024px) {
+  .kz-hp-drop { grid-template-columns: 1fr; min-height: auto; }
+  .kz-hp-drop__image { aspect-ratio: 16/9; }
+  .kz-hp-drop__info { padding: 48px 40px; }
+  .kz-hp-story { grid-template-columns: 1fr; }
+  .kz-hp-story__image { aspect-ratio: 16/7; }
+  .kz-hp-story__text { padding: 56px 40px; }
+}
+@media (max-width: 768px) {
+  .kz-hp-hero { min-height: 100svh; }
+  .kz-hp-hero__overlay { padding: 0 24px; }
+  .kz-hp-hero__ctas { flex-direction: column; gap: 12px; }
+  .kz-hp-cats { grid-template-columns: 1fr; }
+  .kz-hp-cat { aspect-ratio: 16/9; }
+  .kz-hp-section { padding: 48px 24px; }
+  .kz-hp-section__head { flex-direction: column; align-items: flex-start; }
+  .kz-hp-sale { padding: 56px 24px; }
+  .kz-hp-drop__info { padding: 36px 24px; }
+  .kz-hp-story__text { padding: 48px 24px; }
+  .kz-hp-newsletter { padding: 56px 24px; }
+  .kz-hp-hero__scroll { display: none; }
+}
+
+/* =====================================================
+   KICKZONE 2026 REFRESH - youth sneaker retail
+   ===================================================== */
+:root {
+  --kz-black: #0A0A0A;
+  --kz-white: #FFFFFF;
+  --kz-orange: #111111;
+  --kz-orange-dk: #3A3A3A;
+  --kz-gray-dark: #FFFFFF;
+  --kz-gray-mid: #D8D8D8;
+  --kz-gray-text: #111111;
+  --kz-cream: #F5F5F5;
+}
+
+body,
+.site,
+.site-content {
+  background: #FFFFFF !important;
+  color: #0A0A0A !important;
+}
+
+p,
+li,
+.entry-content,
+.entry-summary {
+  color: #0A0A0A;
+}
+
+#masthead,
+.site-header,
+.ast-primary-header-bar,
+.ast-above-header-bar,
+.ast-below-header-bar {
+  background: #FFFFFF !important;
+  border-bottom: 1px solid #E5E5E5 !important;
+}
+
+.main-navigation a,
+.ast-primary-header-bar .main-navigation a,
+#site-navigation a,
+.site-title,
+.ast-site-title a {
+  color: #0A0A0A !important;
+  letter-spacing: 0 !important;
+}
+
+.main-navigation a:hover,
+#site-navigation a:hover,
+.site-title a:hover,
+.ast-site-title a:hover {
+  color: #6E6E6E !important;
+}
+
+.kz-ticker {
+  background: #0A0A0A;
+}
+
+.kz-ticker-track span {
+  color: #FFFFFF;
+  letter-spacing: 0.08em;
+}
+
+.kz-hp-hero {
+  min-height: calc(100vh - 36px);
+  background: #FFFFFF;
+  align-items: center;
+  padding: 120px 0 92px;
+}
+
+.kz-hp-hero__img {
+  filter: none;
+  object-position: center;
+}
+
+.kz-hp-hero__bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(255,255,255,0.88) 0%, rgba(255,255,255,0.54) 38%, rgba(255,255,255,0.05) 74%);
+}
+
+.kz-hp-hero__overlay {
+  max-width: 760px;
+  padding-left: clamp(24px, 6vw, 80px);
+}
+
+.kz-hp-hero__title {
+  color: #0A0A0A !important;
+  font-family: 'DM Sans', sans-serif !important;
+  font-size: clamp(54px, 8vw, 112px) !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.01em !important;
+  line-height: 0.95 !important;
+  text-transform: none !important;
+}
+
+.kz-hp-hero__title em {
+  color: #0A0A0A;
+  font-style: normal;
+}
+
+.kz-hp-hero__sub {
+  color: #111111;
+  font-size: 18px;
+  line-height: 1.55;
+  max-width: 520px;
+}
+
+.kz-btn-primary,
+.wp-block-button__link,
+.woocommerce a.button,
+.woocommerce button.button,
+.woocommerce input.button,
+.woocommerce #respond input#submit,
+.woocommerce .cart .button,
+.woocommerce .checkout-button,
+.ast-button,
+button[type="submit"],
+input[type="submit"] {
+  background: #0A0A0A !important;
+  border-radius: 999px !important;
+  color: #FFFFFF !important;
+  letter-spacing: 0 !important;
+  text-transform: none !important;
+}
+
+.kz-btn-primary:hover,
+.woocommerce a.button:hover,
+.woocommerce button.button:hover,
+.woocommerce #respond input#submit:hover {
+  background: #333333 !important;
+}
+
+.kz-btn-ghost,
+.kz-btn-outline-dark {
+  border-color: #0A0A0A !important;
+  border-radius: 999px;
+  color: #0A0A0A !important;
+  letter-spacing: 0 !important;
+  text-transform: none;
+}
+
+.kz-btn-ghost:hover,
+.kz-btn-outline-dark:hover {
+  background: #0A0A0A !important;
+  color: #FFFFFF !important;
+}
+
+.kz-hp-drop,
+.kz-hp-section,
+.kz-hp-section--dark,
+.kz-hp-newsletter {
+  background: #FFFFFF;
+}
+
+.kz-hp-drop {
+  min-height: 560px;
+  border-top: 1px solid #E5E5E5;
+  border-bottom: 1px solid #E5E5E5;
+}
+
+.kz-hp-drop__image,
+.kz-hp-drop__info {
+  background: #F5F5F5;
+  border: 0;
+}
+
+.kz-hp-drop__name,
+.kz-hp-section__title,
+.kz-hp-newsletter h2 {
+  color: #0A0A0A !important;
+  font-family: 'DM Sans', sans-serif !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.01em !important;
+  text-transform: none !important;
+}
+
+.kz-hp-drop__price,
+.woocommerce-Price-amount,
+.woocommerce .price,
+.price .amount {
+  color: #0A0A0A !important;
+}
+
+.kz-hp-drop__desc,
+.kz-hp-drop__more,
+.kz-hp-section__more,
+.kz-hp-newsletter p,
+.kz-hp-newsletter__note {
+  color: #111111 !important;
+}
+
+.kz-hp-cats {
+  background: #FFFFFF;
+  gap: 16px;
+  padding: 16px;
+}
+
+.kz-hp-cat {
+  border-radius: 0;
+  background: #F5F5F5;
+}
+
+.kz-hp-cat__img {
+  filter: none;
+}
+
+.kz-hp-cat:hover .kz-hp-cat__img {
+  filter: none;
+}
+
+.kz-hp-cat__label {
+  background: linear-gradient(to top, rgba(0,0,0,0.72), rgba(0,0,0,0));
+}
+
+.kz-hp-cat__label span {
+  color: #FFFFFF;
+}
+
+.kz-hp-cat::after {
+  content: "Khám phá";
+}
+
+.kz-hp-sale {
+  background: #0A0A0A;
+}
+
+.kz-hp-sale h2,
+.kz-hp-sale p {
+  color: #FFFFFF !important;
+}
+
+.kz-btn-dark {
+  background: #FFFFFF;
+  color: #0A0A0A !important;
+  border-radius: 999px;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.kz-hp-story,
+.kz-about-hero,
+.kz-about-values {
+  background: #F5F5F5;
+}
+
+.kz-hp-story__text h2,
+.kz-hp-story__text p,
+.kz-about-story p,
+.kz-about-values p {
+  color: #0A0A0A !important;
+}
+
+.kz-trust-strip {
+  background: #FFFFFF;
+  border-top: 1px solid #E5E5E5;
+  border-bottom: 1px solid #E5E5E5;
+  gap: 0;
+}
+
+.kz-trust-item {
+  background: #FFFFFF;
+  border-right: 1px solid #E5E5E5;
+  text-align: left;
+}
+
+.kz-trust-item:last-child {
+  border-right: 0;
+}
+
+.kz-trust-icon {
+  display: none !important;
+}
+
+.kz-trust-title {
+  color: #0A0A0A;
+  font-size: 16px;
+}
+
+.kz-trust-sub {
+  color: #111111;
+}
+
+.kz-post-card,
+.ast-article-post,
+.type-post,
+article.post,
+.widget,
+.woocommerce ul.products li.product {
+  background: #FFFFFF !important;
+  border: 1px solid #E5E5E5 !important;
+  box-shadow: none !important;
+}
+
+.entry-title a,
+.kz-post-card__title a,
+.single-post .entry-title,
+.single-post .entry-content h2,
+.single-post .entry-content h3 {
+  color: #0A0A0A !important;
+}
+
+.entry-meta,
+.entry-footer,
+.entry-meta a,
+.entry-footer a,
+.kz-post-card__date,
+.kz-post-card__excerpt,
+.single-post .entry-content,
+.single-post .entry-content p,
+.widget-title,
+.widgettitle {
+  color: #111111 !important;
+}
+
+.kz-post-card__cat,
+.cat-links a {
+  background: #0A0A0A !important;
+  color: #FFFFFF !important;
+}
+
+.kz-blog-intro {
+  padding: 72px 24px 40px;
+  background: #FFFFFF;
+}
+
+.kz-blog-intro .kz-display {
+  color: #0A0A0A !important;
+  font-family: 'DM Sans', sans-serif !important;
+  font-size: clamp(48px, 7vw, 84px) !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.01em !important;
+  text-transform: none !important;
+  margin: 0 0 12px;
+}
+
+.kz-blog-intro p {
+  color: #0A0A0A !important;
+  font-size: 18px;
+  margin: 0;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="number"],
+input[type="password"],
+input[type="search"],
+textarea,
+select,
+.wpcf7 input[type="text"],
+.wpcf7 input[type="email"],
+.wpcf7 input[type="tel"],
+.wpcf7 textarea {
+  background: #FFFFFF !important;
+  border-color: #CFCFCF !important;
+  color: #0A0A0A !important;
+}
+
+label,
+::placeholder {
+  color: #111111 !important;
+}
+
+@media (max-width: 768px) {
+  .kz-hp-hero {
+    align-items: flex-end;
+    padding-bottom: 56px;
+  }
+
+  .kz-hp-hero__bg::after {
+    background: linear-gradient(0deg, rgba(255,255,255,0.94) 0%, rgba(255,255,255,0.58) 42%, rgba(255,255,255,0.08) 100%);
+  }
+
+  .kz-hp-cats {
+    gap: 12px;
+    padding: 12px;
+  }
+
+  .kz-trust-strip {
+    grid-template-columns: 1fr !important;
+  }
+
+  .kz-trust-item {
+    border-right: 0;
+    border-bottom: 1px solid #E5E5E5;
+  }
+}
+
+/* =====================================================
+   SELLING PAGE TUNE - tighter retail landing
+   ===================================================== */
+.home.page .site-content,
+.home.page .entry-content {
+  background: #FFFFFF !important;
+}
+
+.kz-hp-hero {
+  min-height: 620px !important;
+  display: grid;
+  grid-template-columns: minmax(320px, 0.92fr) minmax(420px, 1.08fr);
+  align-items: center;
+  padding: 64px clamp(20px, 5vw, 72px) !important;
+  gap: clamp(28px, 5vw, 72px);
+  border-bottom: 1px solid #E8E8E8;
+}
+
+.kz-hp-hero__bg {
+  position: relative !important;
+  inset: auto !important;
+  z-index: 1;
+  order: 2;
+  width: 100%;
+  height: clamp(360px, 44vw, 560px);
+  background: #F4F4F4;
+  overflow: hidden;
+}
+
+.kz-hp-hero__bg::after {
+  display: none;
+}
+
+.kz-hp-hero__img {
+  height: 100% !important;
+  object-fit: cover;
+  object-position: center;
+}
+
+.kz-hp-hero__overlay {
+  order: 1;
+  z-index: 2;
+  padding: 0 !important;
+  max-width: 560px;
+}
+
+.kz-hp-hero__title {
+  font-size: clamp(48px, 6.2vw, 86px) !important;
+  line-height: 0.98 !important;
+  margin: 10px 0 18px !important;
+}
+
+.kz-hp-hero__sub {
+  max-width: 460px;
+  margin-bottom: 24px;
+}
+
+.kz-hp-hero__scroll {
+  display: none;
+}
+
+.kz-hp-drop {
+  min-height: 430px !important;
+  grid-template-columns: minmax(360px, 0.9fr) minmax(360px, 1.1fr);
+  margin: 0;
+}
+
+.kz-hp-drop__image {
+  min-height: 430px;
+}
+
+.kz-hp-drop__img {
+  object-fit: cover;
+  object-position: center;
+}
+
+.kz-hp-drop__info {
+  padding: clamp(36px, 5vw, 64px) !important;
+}
+
+.kz-hp-drop__name {
+  font-size: clamp(36px, 4.2vw, 58px) !important;
+}
+
+.kz-hp-cats {
+  gap: 12px;
+  padding: 40px clamp(20px, 5vw, 72px);
+}
+
+.kz-hp-cat {
+  aspect-ratio: 16 / 10 !important;
+}
+
+.kz-hp-cat__label h3 {
+  font-size: clamp(28px, 3vw, 40px) !important;
+}
+
+.kz-hp-section {
+  padding: 56px clamp(20px, 5vw, 72px) !important;
+}
+
+.kz-hp-section__head {
+  margin-bottom: 28px;
+}
+
+.woocommerce ul.products {
+  gap: 18px !important;
+}
+
+.woocommerce ul.products li.product img {
+  height: 220px !important;
+  object-fit: cover !important;
+}
+
+.kz-hp-sale {
+  padding: 54px clamp(20px, 5vw, 72px) !important;
+}
+
+.kz-hp-sale h2 {
+  font-size: clamp(34px, 4.8vw, 58px) !important;
+}
+
+.kz-hp-story {
+  min-height: 440px !important;
+}
+
+.kz-hp-story__text {
+  padding: clamp(40px, 5vw, 64px) !important;
+}
+
+.kz-hp-story__text h2 {
+  font-size: clamp(34px, 4vw, 52px) !important;
+}
+
+.kz-about-hero {
+  background: #0A0A0A !important;
+}
+
+.kz-about-hero .kz-display,
+.kz-about-hero h1,
+.kz-about-hero .kz-section-label {
+  color: #FFFFFF !important;
+}
+
+.kz-about-values p {
+  color: #0A0A0A !important;
+}
+
+.blog .entry-title a,
+.archive .entry-title a,
+.ast-article-post .entry-title a,
+.kz-post-card__title a {
+  color: #0A0A0A !important;
+}
+
+.blog .entry-title a:hover,
+.archive .entry-title a:hover,
+.ast-article-post .entry-title a:hover,
+.kz-post-card__title a:hover,
+.entry-title a:hover {
+  color: #FF4713 !important;
+}
+
+.ast-excerpt-container,
+.ast-excerpt-container p,
+.woocommerce-product-details__short-description,
+.woocommerce-product-details__short-description p,
+.woocommerce div.product .woocommerce-tabs .panel,
+.woocommerce div.product .woocommerce-tabs .panel p,
+.woocommerce div.product .summary,
+.woocommerce div.product .summary p {
+  color: #0A0A0A !important;
+}
+
+@media (max-width: 1024px) {
+  .kz-hp-hero,
+  .kz-hp-drop {
+    grid-template-columns: 1fr;
+  }
+
+  .kz-hp-hero__bg {
+    order: 1;
+    height: 360px;
+  }
+
+  .kz-hp-hero__overlay {
+    order: 2;
+  }
+
+  .kz-hp-drop__image {
+    min-height: 320px;
+  }
+}
+
+@media (max-width: 768px) {
+  .kz-hp-hero {
+    min-height: auto !important;
+    padding: 24px 20px 44px !important;
+  }
+
+  .kz-hp-hero__bg {
+    height: 300px;
+  }
+
+  .kz-hp-cats {
+    padding: 28px 16px;
+  }
+
+  .kz-hp-cat {
+    aspect-ratio: 16 / 11 !important;
+  }
+
+  .woocommerce ul.products li.product img {
+    height: 240px !important;
+  }
+}
+
+/* =====================================================
+   HEADER LOCK - identical across every route
+   ===================================================== */
+body #masthead,
+body .site-header,
+body .ast-primary-header-bar,
+body .ast-above-header-bar,
+body .ast-below-header-bar,
+body.ast-theme-transparent-header #masthead,
+body.ast-theme-transparent-header .ast-primary-header-bar {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 9999 !important;
+  min-height: 72px !important;
+  height: 72px !important;
+  background: #FFFFFF !important;
+  border-bottom: 1px solid #E5E5E5 !important;
+  box-shadow: none !important;
+}
+
+body.admin-bar #masthead,
+body.admin-bar .ast-primary-header-bar {
+  top: 32px !important;
+}
+
+body .ast-primary-header-bar .ast-builder-grid-row,
+body .site-header-primary-section-left,
+body .site-header-primary-section-right,
+body .ast-builder-layout-element,
+body .site-branding,
+body .ast-site-identity {
+  min-height: 72px !important;
+  height: 72px !important;
+  align-items: center !important;
+}
+
+body .site-logo-img,
+body .custom-logo-link {
+  display: flex !important;
+  align-items: center !important;
+  width: 160px !important;
+  min-width: 160px !important;
+  height: 44px !important;
+}
+
+body .site-logo-img img,
+body img.custom-logo,
+body .custom-logo {
+  display: block !important;
+  width: 160px !important;
+  max-width: 160px !important;
+  height: 44px !important;
+  max-height: 44px !important;
+  object-fit: contain !important;
+}
+
+body .site-title,
+body .ast-site-title,
+body .site-description {
+  display: none !important;
+}
+
+body .main-header-menu,
+body .main-navigation,
+body #site-navigation {
+  min-height: 72px !important;
+  align-items: center !important;
+}
+
+body .main-navigation a,
+body .ast-primary-header-bar .main-navigation a,
+body #site-navigation a,
+body .main-header-menu > .menu-item > .menu-link,
+body.ast-theme-transparent-header .main-header-menu > .menu-item > .menu-link {
+  color: #0A0A0A !important;
+  font-family: 'DM Sans', sans-serif !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0 !important;
+  text-transform: none !important;
+  line-height: 72px !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+body .main-navigation a:hover,
+body #site-navigation a:hover,
+body .main-header-menu > .menu-item:hover > .menu-link,
+body .main-header-menu > .current-menu-item > .menu-link,
+body .main-header-menu > .current_page_item > .menu-link {
+  color: #FF4713 !important;
+}
+
+body .ast-header-woo-cart,
+body .ast-header-woo-cart a,
+body .ast-header-woo-cart .ast-icon,
+body .ast-header-account-wrap,
+body .ast-header-search {
+  color: #0A0A0A !important;
+}
+
+body .ast-header-woo-cart .count,
+body .ast-header-woo-cart .ast-woo-header-cart-info-wrap {
+  background: #0A0A0A !important;
+  color: #FFFFFF !important;
+}
+
+body .ast-mobile-header-wrap,
+body .ast-mobile-header-content,
+body .ast-mobile-popup-drawer {
+  background: #FFFFFF !important;
+}
+
+body .menu-toggle,
+body .ast-button-wrap .menu-toggle,
+body .mobile-menu-toggle-icon,
+body .ahfb-svg-iconset svg {
+  color: #0A0A0A !important;
+  fill: #0A0A0A !important;
+}
+
+@media (max-width: 921px) {
+  body #masthead,
+  body .site-header,
+  body .ast-primary-header-bar,
+  body.ast-theme-transparent-header #masthead,
+  body.ast-theme-transparent-header .ast-primary-header-bar {
+    min-height: 64px !important;
+    height: 64px !important;
+  }
+
+  body .ast-primary-header-bar .ast-builder-grid-row,
+  body .site-header-primary-section-left,
+  body .site-header-primary-section-right,
+  body .ast-builder-layout-element,
+  body .site-branding,
+  body .ast-site-identity,
+  body .main-header-menu,
+  body .main-navigation,
+  body #site-navigation {
+    min-height: 64px !important;
+    height: 64px !important;
+  }
+
+  body .site-logo-img,
+  body .custom-logo-link {
+    width: 142px !important;
+    min-width: 142px !important;
+    height: 40px !important;
+  }
+
+  body .site-logo-img img,
+  body img.custom-logo,
+  body .custom-logo {
+    width: 142px !important;
+    max-width: 142px !important;
+    height: 40px !important;
+    max-height: 40px !important;
+  }
+
+  body .main-header-menu > .menu-item > .menu-link {
+    line-height: 44px !important;
+  }
+}
+
+/* =====================================================
+   TYPOGRAPHY LOCK - readable sneaker brand system
+   ===================================================== */
+:root {
+  --kz-font-body: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --kz-font-heading: 'Space Grotesk', 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+html,
+body,
+button,
+input,
+select,
+textarea,
+.ast-button,
+.ast-custom-button,
+.woocommerce,
+.wpcf7,
+.main-navigation,
+.entry-content,
+.entry-summary {
+  font-family: var(--kz-font-body) !important;
+}
+
+body {
+  font-size: 16px;
+  line-height: 1.65;
+  letter-spacing: 0 !important;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.entry-title,
+.entry-title a,
+.page-title,
+.woocommerce-products-header h1,
+.woocommerce-loop-product__title,
+.product_title,
+.related h2,
+.upsells h2,
+.widget-title,
+.widgettitle,
+.kz-display,
+.kz-hp-hero__title,
+.kz-hp-drop__name,
+.kz-hp-section__title,
+.kz-hp-sale h2,
+.kz-hp-story__text h2,
+.kz-hp-newsletter h2,
+.kz-blog-intro .kz-display,
+.kz-post-card__title,
+.kz-post-card__title a {
+  font-family: var(--kz-font-heading) !important;
+  letter-spacing: 0 !important;
+  text-transform: none !important;
+}
+
+h1,
+.entry-title,
+.page-title,
+.kz-display,
+.kz-hp-hero__title {
+  font-weight: 700 !important;
+}
+
+h2,
+h3,
+.woocommerce-loop-product__title,
+.kz-post-card__title,
+.kz-hp-section__title {
+  font-weight: 700 !important;
+}
+
+p,
+li,
+.entry-meta,
+.entry-footer,
+.ast-excerpt-container,
+.woocommerce-product-details__short-description,
+.woocommerce div.product .woocommerce-tabs .panel,
+.kz-post-card__excerpt,
+.kz-hp-hero__sub,
+.kz-hp-drop__desc,
+.kz-hp-story__text p {
+  font-family: var(--kz-font-body) !important;
+  letter-spacing: 0 !important;
+}
+
+.main-navigation a,
+.main-header-menu > .menu-item > .menu-link,
+.kz-btn-primary,
+.kz-btn-ghost,
+.kz-btn-dark,
+.kz-btn-outline-dark,
+.woocommerce a.button,
+.woocommerce button.button,
+.woocommerce input.button,
+button[type="submit"],
+input[type="submit"],
+.kz-section-label,
+.kz-hp-section__more,
+.kz-hp-drop__more,
+.kz-post-card__cat,
+.kz-post-card__date,
+.kz-post-card__link,
+.cat-links a,
+.kz-trust-title,
+.kz-trust-sub {
+  font-family: var(--kz-font-body) !important;
+  letter-spacing: 0 !important;
+}
+
+.woocommerce-Price-amount,
+.woocommerce .price,
+.price .amount,
+.kz-hp-drop__price,
+.single-product .price {
+  font-family: var(--kz-font-body) !important;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0 !important;
+}
+
+.kz-section-label {
+  font-size: 12px !important;
+  font-weight: 800 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.04em !important;
+}
+
+.kz-hp-hero__title {
+  font-size: clamp(48px, 6vw, 82px) !important;
+  line-height: 1 !important;
+}
+
+.kz-hp-section__title,
+.kz-blog-intro .kz-display {
+  font-size: clamp(34px, 4.4vw, 58px) !important;
+  line-height: 1.05 !important;
+}
+
+.single-post .entry-title,
+.single-product .product_title {
+  font-size: clamp(34px, 5vw, 58px) !important;
+  line-height: 1.05 !important;
+}
+
+.woocommerce ul.products li.product .woocommerce-loop-product__title,
+.kz-post-card__title {
+  font-size: 17px !important;
+  line-height: 1.35 !important;
+}
+
+/* Final shop/about polish */
+.post-type-archive-product .page-title,
+.post-type-archive-product .woocommerce-products-header__title,
+.woocommerce-shop .page-title,
+.woocommerce-shop .woocommerce-products-header__title,
+body.woocommerce-shop h1 {
+  color: #FF4713 !important;
+}
+
+.page-id-39 .ast-single-post-featured-section,
+.page-id-39 .post-thumb {
+  display: none !important;
+}
+
+.kz-about-hero {
+  padding: 84px 24px 64px !important;
+  text-align: center;
+}
+
+.kz-about-story {
+  padding-top: 56px !important;
+}

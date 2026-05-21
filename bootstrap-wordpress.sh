@@ -16,10 +16,10 @@ until wp core is-installed --allow-root >/dev/null 2>&1; do
   i=$((i + 1))
   if wp core install \
     --url=http://localhost:8080 \
-    --title="Blossom Chic Viet" \
-    --admin_user=admin_blossom \
-    --admin_password='Admin@Blossom2024' \
-    --admin_email=admin@blossom.local \
+    --title="KickZone" \
+    --admin_user=admin_kickzone \
+    --admin_password='Admin@KZ2024!' \
+    --admin_email=admin@kickzone.local \
     --skip-email \
     --allow-root >/dev/null 2>&1; then
     break
@@ -31,17 +31,26 @@ until wp core is-installed --allow-root >/dev/null 2>&1; do
   sleep 2
 done
 
-echo "Installing parent theme and plugins..."
-wp theme install blossom-feminine --force --allow-root
-wp theme activate blossom-chic --allow-root
-wp plugin install wordpress-seo contact-form-7 updraftplus w3-total-cache elementor --activate --force --allow-root
+echo "Installing Astra theme..."
+wp theme install astra --force --allow-root
+wp theme activate kickzone-child --allow-root
 
-echo "Applying Vietnamese language and demo content..."
+echo "Installing plugins..."
+wp plugin install woocommerce wordpress-seo contact-form-7 updraftplus w3-total-cache --activate --force --allow-root
+
+echo "Setting language and permalink..."
 wp language core install vi --activate --allow-root || true
 wp option update WPLANG vi --allow-root
 wp option update permalink_structure '/%postname%/' --allow-root
-wp eval-file /work/wp-apply-blossom-chic.php --allow-root
-wp rewrite flush --allow-root
+wp option update blogdescription 'Every Step. A Statement.' --allow-root
 
+echo "Applying KickZone demo content..."
+wp eval-file /work/wp-run-with-errors.php --allow-root
+
+wp rewrite flush --allow-root
 chown -R www-data:www-data /var/www/html/wp-content || true
-echo "Blossom Chic Vietnamese WordPress bootstrap completed."
+
+echo "KickZone WordPress bootstrap completed."
+echo "  Site   : http://localhost:8080"
+echo "  Admin  : http://localhost:8080/wp-admin"
+echo "  User   : admin_kickzone / Admin@KZ2024!"

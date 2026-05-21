@@ -1,0 +1,53 @@
+============================================================
+KickZone - WordPress Accounts
+============================================================
+
+Website:
+  Site URL    : http://localhost:8080
+  Admin URL   : http://localhost:8080/wp-admin
+  phpMyAdmin  : http://localhost:8081
+
+============================================================
+WORDPRESS LOGIN
+============================================================
+
+Administrator:
+  Username : admin_kickzone
+  Password : Admin@KZ2024!
+  Email    : admin@kickzone.local
+  Role     : Administrator
+
+Editor:
+  Username : editor_kickzone
+  Password : Editor@KZ2024!
+  Email    : editor@kickzone.local
+  Role     : Editor
+
+Customer:
+  Username : customer_test
+  Password : Customer@2024!
+  Email    : customer@kickzone.local
+  Role     : Customer
+
+============================================================
+DATABASE / PHPMYADMIN
+============================================================
+
+phpMyAdmin URL : http://localhost:8081
+Server         : db
+Database       : kickzone_wp
+Root username  : root
+Root password  : root_pass
+
+WordPress DB user:
+  Username : kickzone_user
+  Password : kickzone_pass
+
+============================================================
+NOTE
+============================================================
+
+These accounts are created automatically by the Docker bootstrap.
+If the database volume already exists, Docker keeps the existing data.
+Use `docker compose down -v --remove-orphans` only when you want to
+delete the local database and rebuild the demo from scratch.
